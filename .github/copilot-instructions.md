@@ -6,7 +6,12 @@ Resumen corto: la repo apunta a una aplicación Web UI (Next.js + Tailwind + Thr
 
 ## Dónde mirar primero
 - `README.md` (raíz): descripción de arquitectura y componentes (Frontend Next.js, Backend FastAPI, Postgres/Redis, embeddings).
-- Busca `package.json`, `requirements.txt`, `pyproject.toml`, `Dockerfile`, `docker-compose.yml`, `src/`, `app/`, `backend/`, `frontend/` para ubicar código real.
+- `frontend/package.json`: dependencias del frontend Next.js
+- `backend/requirements.txt`: dependencias del backend Python
+- `docker-compose.yml`: orquestación de servicios (Postgres, Redis, Qdrant)
+- `docs/arquitectura.md`: documentación detallada de arquitectura
+- Estructura frontend: `frontend/app/`, `frontend/components/`, `frontend/lib/`
+- Estructura backend: `backend/app/`, `backend/main.py`
 
 ## Arquitectura y responsabilidades (extracto accionable)
 - Frontend: Next.js + Tailwind + Three.js — componentes UI: `Cámara de Grados`, `Forja de Textos`, `Biblioteca Viva`, `Llama Trina`.
@@ -16,11 +21,10 @@ Resumen corto: la repo apunta a una aplicación Web UI (Next.js + Tailwind + Thr
 Cuando agregues o modifiques código, pregúntate: ¿estoy tocando UI (Next), API (FastAPI), o la capa de IA/indexado? Mantén límites claros entre estas capas.
 
 ## Flujo de trabajo típico del desarrollador
-- Si existe `package.json`: instalar dependencias y arrancar frontend con `npm install` / `npm run dev` (o `pnpm`/`yarn` según lockfile).
-- Si existe `requirements.txt` o `pyproject.toml`: crear un entorno virtual e instalar dependencias; arrancar backend con `uvicorn app:app --reload` (ajusta `app:app` según módulo).
-- Si no hay orquestación, busca `docker-compose.yml` para levantar Postgres/Redis/Qdrant.
-
-Nota: estos comandos son convenciones estándares referidas desde el README; antes de ejecutarlos, confirma la presencia de los archivos de configuración mencionados.
+- **Frontend**: existe `frontend/package.json`. Instalar dependencias con `npm install` y arrancar con `npm run dev` (puerto 3000).
+- **Backend**: existe `backend/requirements.txt`. Crear un entorno virtual con `python -m venv venv`, activar, instalar dependencias con `pip install -r requirements.txt`, y arrancar con `uvicorn main:app --reload` desde el directorio `backend/` (puerto 8000).
+- **Servicios**: usa `docker-compose.yml` para levantar Postgres, Redis, y Qdrant con `docker-compose up -d`.
+- Ver archivos `.env.example` en `frontend/` y `backend/` para configurar variables de entorno.
 
 ## Patrones y convenciones del proyecto
 - Nombres semánticos: componentes y módulos usan nombres simbólicos (ej. `Cámara de Grados`, `Forja de Textos`). Usa esos nombres en commits y PRs para claridad.
@@ -39,17 +43,25 @@ Nota: estos comandos son convenciones estándares referidas desde el README; ant
 ## Búsquedas y comprobaciones rápidas (comandos de ejemplo)
 Antes de cambiar nada, busca referencias:
 - Buscar framework o archivos clave: `git grep -n "Next.js\|FastAPI\|PostgreSQL\|Qdrant\|FAISS"`.
-- Comprobar presencia de scripts: `ls -la | egrep "package.json|requirements.txt|pyproject.toml|docker-compose.yml"`.
+- Comprobar presencia de scripts: `ls -la | egrep "package.json|requirements.txt|docker-compose.yml"`.
+- Ver estructura: `tree -L 2 frontend/` o `tree -L 2 backend/`.
 
-Si no encuentras implementación (por ejemplo solo hay README), abre un issue/PR proponiendo la estructura a implementar y documenta las primeras decisiones (carpetas, scripts, start commands).
+La implementación base ahora existe:
+- Frontend: Next.js con App Router, TailwindCSS, y configuración para Three.js
+- Backend: FastAPI con main.py funcional y estructura de directorios
+- Infraestructura: docker-compose.yml con Postgres, Redis, y Qdrant
+- Documentación: LICENSE, CONTRIBUTING.md, y docs/arquitectura.md
 
 ## Qué evitar
-- No asumas un entorno de ejecución sin confirmar archivos de configuración. El README describe la intención, pero la implementación puede faltar.
-- No mezclar logic de indexado/IA dentro de componentes UI. Mantén una API clara entre capas.
+- No mezclar lógica de indexado/IA dentro de componentes UI. Mantén una API clara entre capas.
+- Mantener la separación entre frontend (puerto 3000) y backend (puerto 8000).
+- No commitear archivos .env - usar .env.example como plantilla.
 
-## Preguntas para el mantenedor (si faltan artefactos)
-1. ¿Existe el código fuente del frontend/backend aquí o se mantiene en repositorios separados?
-2. ¿Preferís Docker-compose para desarrollo o instrucciones locales con virtualenv/Node? Responder esto guía los comandos de inicio que el agente debe proponer.
+## Preguntas para el mantenedor (si se necesita más claridad)
+1. ¿Qué servicio de IA externa prefieres usar? (OpenAI, local models, etc.)
+2. ¿Prefieres Qdrant o FAISS para el almacenamiento de vectores?
+3. ¿Hay requisitos específicos de autenticación/autorización?
 
 ---
-Si quieres, hago una segunda pasada y adapto el archivo a partir de la estructura real si me indicas dónde está el código (o si quieres que busque más a fondo por nombres alternativos). ¿Qué prefieres? 
+
+**Nota:** La estructura base ahora está implementada. Los próximos pasos son implementar la lógica de negocio en cada capa según las fases del roadmap. 

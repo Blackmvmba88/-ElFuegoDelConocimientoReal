@@ -1,7 +1,3 @@
-Aquí tienes el archivo README.md listo para tu repositorio Blackmvmba88/-ElFuegoDelConocimientoReal.  
-Solo tienes que copiar y pegar este bloque en el archivo README.md de tu repo, ¡y quedará idéntico al formato épico que diseñamos!
-
-````markdown name=README.md
 # 🔥 Proyecto Épico: El Fuego del Conocimiento Real (Grado 33)
 
 ---
@@ -90,7 +86,63 @@ El usuario recorre niveles de iniciación digital desbloqueando lecciones, fragm
 
 Construir el **Libro Digital del Conocimiento Real**, una red viva donde cada lector se convierte en autor, cada palabra en chispa y cada chispa en universo.
 
-> “No buscamos encender una llama más. Buscamos despertar el fuego que ya arde en cada alma.”
-````
+> "No buscamos encender una llama más. Buscamos despertar el fuego que ya arde en cada alma."
 
-Si prefieres, puedo guiarte paso a paso para subirlo desde GitHub web o por línea de comandos. ¿Te gustaría eso?
+---
+
+## 🚀 **Cómo Empezar**
+
+### Prerrequisitos
+- Node.js 18+ (para el frontend)
+- Python 3.10+ (para el backend)
+- PostgreSQL 14+
+- Redis 7+
+- Docker y Docker Compose (opcional, recomendado)
+
+### Instalación Rápida
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/Blackmvmba88/-ElFuegoDelConocimientoReal.git
+cd -ElFuegoDelConocimientoReal
+
+# Opción 1: Usar Docker Compose (recomendado)
+docker-compose up -d
+
+# Opción 2: Instalación manual
+# Frontend
+cd frontend
+npm install
+npm run dev
+
+# Backend (en otra terminal)
+cd backend
+python -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+---
+
+## 📚 **Documentación**
+
+- [Guía de Contribución](CONTRIBUTING.md)
+- [Arquitectura Detallada](docs/arquitectura.md)
+- [API Documentation](docs/api.md)
+
+---
+
+## 📄 **Licencia**
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+
+---
+
+## 🤝 **Contribuciones**
+
+Las contribuciones son bienvenidas. Por favor, lee [CONTRIBUTING.md](CONTRIBUTING.md) para detalles sobre nuestro código de conducta y el proceso para enviar pull requests.
+
+---
+
+**Construido con 🔥 por BlackMamba🐍🔥👑**
