@@ -20,7 +20,7 @@ export default function Home() {
         </p>
         
         <p className="text-lg text-gray-500 dark:text-gray-500 mb-12 italic">
-          "No buscamos encender una llama más. Buscamos despertar el fuego que ya arde en cada alma."
+          &ldquo;No buscamos encender una llama más. Buscamos despertar el fuego que ya arde en cada alma.&rdquo;
         </p>
 
         <div className="flex gap-4 justify-center">

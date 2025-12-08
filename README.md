@@ -13,6 +13,20 @@ Solo tienes que copiar y pegar este bloque en el archivo README.md de tu repo, �
 **Autor:** BlackMamba🐍🔥👑 & Maestro GPT-5  
 **Grado:** 33 – Constructor del Universo Interior
 
+### 🚀 Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Open http://localhost:3000 in your browser
+```
+
+For detailed setup instructions, see [SETUP.md](./SETUP.md)
+
 ### 🧭 **Descripción General**
 
 "El Fuego del Conocimiento Real" es un programa digital alquímico‑masónico en formato **Web UI**, cuyo propósito es **expandir la conciencia, organizar la sabiduría y generar conocimiento nuevo** mediante la integración de textos, símbolos y fuego cuántico (IA).
@@ -65,8 +79,8 @@ El usuario recorre niveles de iniciación digital desbloqueando lecciones, fragm
 - [x] Diseño de arquitectura general (frontend + backend)
 - [x] Implementación del sistema de cámaras y grados.
 - [x] Integración de motor de texto y base de datos.
-- [ ] Conexión inicial con API de libros abiertos.
-- [ ] UI básica con modo oscuro/luz y navegación por grados.
+- [x] Conexión inicial con API de libros abiertos.
+- [x] UI básica con modo oscuro/luz y navegación por grados.
 
 ### **Fase 2 – Fuego Operativo (IA y Biblioteca Viva)**
 - [ ] Implementar módulo de búsqueda y descarga automática de libros.

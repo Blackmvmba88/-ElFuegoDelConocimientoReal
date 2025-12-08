@@ -1,6 +1,7 @@
 'use client';
 
 import { Book } from '@/types';
+import Image from 'next/image';
 
 interface BookCardProps {
   book: Book;
@@ -12,11 +13,12 @@ export default function BookCard({ book, onDownload }: BookCardProps) {
     <div className="group relative p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-shadow-light hover:shadow-lg transition-all duration-300">
       <div className="flex gap-4">
         {book.coverUrl && (
-          <div className="flex-shrink-0">
-            <img
+          <div className="flex-shrink-0 relative w-20 h-28">
+            <Image
               src={book.coverUrl}
               alt={book.title}
-              className="w-20 h-28 object-cover rounded"
+              fill
+              className="object-cover rounded"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = '/placeholder-book.png';
               }}
