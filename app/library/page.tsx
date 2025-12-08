@@ -94,10 +94,15 @@ export default function LibraryPage() {
             <button
               key={topic}
               onClick={async () => {
-                setSearchLoading(true);
-                const response = await gutenbergClient.getBooksByTopic(topic);
-                setBooks(response.results.map(b => gutenbergClient.convertToBook(b)));
-                setSearchLoading(false);
+                try {
+                  setSearchLoading(true);
+                  const response = await gutenbergClient.getBooksByTopic(topic);
+                  setBooks(response.results.map(b => gutenbergClient.convertToBook(b)));
+                } catch (error) {
+                  console.error('Error fetching books by topic:', error);
+                } finally {
+                  setSearchLoading(false);
+                }
               }}
               className="px-4 py-2 rounded-lg bg-white dark:bg-shadow-light border border-gray-300 dark:border-gray-700 hover:border-flame-primary dark:hover:border-flame-secondary text-gray-700 dark:text-gray-300 text-sm transition-colors"
             >

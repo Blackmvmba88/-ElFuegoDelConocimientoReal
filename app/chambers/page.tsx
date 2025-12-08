@@ -54,8 +54,11 @@ export default function ChambersPage() {
             key={chamber.id}
             chamber={chamber}
             onClick={() => {
-              // TODO: Navegar a la página de detalle de la cámara
-              console.log('Chamber clicked:', chamber.name);
+              // Navigation to chamber detail page (to be implemented in Fase 2)
+              if (chamber.unlocked) {
+                console.log('Chamber clicked:', chamber.name);
+                // TODO: Navigate to /chambers/[id] when detail pages are implemented
+              }
             }}
           />
         ))}

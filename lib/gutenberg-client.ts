@@ -99,11 +99,15 @@ export class GutenbergClient {
       const topics = ['philosophy', 'occult', 'mysticism', 'alchemy'];
       const books: Book[] = [];
 
-      for (const topic of topics) {
-        const response = await this.getBooksByTopic(topic, 1);
+      // Fetch topics concurrently for better performance
+      const responses = await Promise.all(
+        topics.map(topic => this.getBooksByTopic(topic, 1))
+      );
+
+      responses.forEach(response => {
         const convertedBooks = response.results.slice(0, 5).map(b => this.convertToBook(b));
         books.push(...convertedBooks);
-      }
+      });
 
       return books;
     } catch (error) {

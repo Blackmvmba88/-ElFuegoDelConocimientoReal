@@ -20,7 +20,7 @@ export default function BookCard({ book, onDownload }: BookCardProps) {
               fill
               className="object-cover rounded"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = '/placeholder-book.png';
+                (e.target as HTMLImageElement).src = '/placeholder-book.svg';
               }}
             />
           </div>
