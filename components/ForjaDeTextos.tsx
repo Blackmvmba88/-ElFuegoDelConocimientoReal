@@ -127,7 +127,20 @@ export function ForjaDeTextos() {
 
           {textoTransmutado && (
             <button
-              onClick={() => navigator.clipboard.writeText(textoTransmutado)}
+              onClick={() => {
+                try {
+                  navigator.clipboard.writeText(textoTransmutado)
+                } catch (error) {
+                  console.error('Failed to copy to clipboard:', error)
+                  // Fallback: create a temporary textarea
+                  const textarea = document.createElement('textarea')
+                  textarea.value = textoTransmutado
+                  document.body.appendChild(textarea)
+                  textarea.select()
+                  document.execCommand('copy')
+                  document.body.removeChild(textarea)
+                }
+              }}
               className="w-full px-6 py-3 rounded-lg bg-gradient-mystic text-white font-semibold hover:shadow-lg hover:shadow-mystic-500/30 transition-all duration-300"
             >
               📋 Copiar al Portapapeles

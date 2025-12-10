@@ -165,11 +165,26 @@ export function LlamaTrina() {
     return () => {
       window.removeEventListener('resize', handleResize)
       cancelAnimationFrame(animationId)
+      
+      // Dispose of Three.js objects to prevent memory leaks
       renderer.dispose()
       particleMaterial.dispose()
       particles.dispose()
+      
+      // Dispose of lights and scene
+      scene.traverse((object) => {
+        if (object instanceof THREE.Mesh) {
+          object.geometry.dispose()
+          if (object.material instanceof THREE.Material) {
+            object.material.dispose()
+          }
+        }
+      })
     }
   }, [])
+
+  // Store initial light intensities
+  const initialIntensitiesRef = useRef<number[]>([])
 
   // Update intensity
   useEffect(() => {
@@ -179,8 +194,15 @@ export function LlamaTrina() {
       child => child instanceof THREE.PointLight
     ) as THREE.PointLight[]
     
-    lights.forEach(light => {
-      light.intensity = light.intensity * (intensidad / 5)
+    // Store initial intensities on first run
+    if (initialIntensitiesRef.current.length === 0) {
+      initialIntensitiesRef.current = lights.map(light => light.intensity)
+    }
+    
+    // Update intensities based on initial values
+    lights.forEach((light, index) => {
+      const initialIntensity = initialIntensitiesRef.current[index] || 2
+      light.intensity = initialIntensity * (intensidad / 5)
     })
   }, [intensidad])
 
