@@ -2,41 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 15, 15, 30;
-    --background-end-rgb: 26, 26, 46;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+  }
+
+  body {
+    @apply bg-gray-100 text-gray-900;
+  }
+
+  .dark body {
+    @apply bg-gray-900 text-gray-100;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  
+  .flame-glow {
+    text-shadow: 0 0 10px rgba(249, 115, 22, 0.5),
+                 0 0 20px rgba(249, 115, 22, 0.3),
+                 0 0 30px rgba(249, 115, 22, 0.2);
+  }
+  
+  .mystic-glow {
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.5),
+                 0 0 20px rgba(139, 92, 246, 0.3),
+                 0 0 30px rgba(139, 92, 246, 0.2);
+  }
 }
 
-/* Efectos alquímicos */
-.flame-glow {
-  box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.shadow-glow {
-  box-shadow: 0 0 20px rgba(26, 26, 46, 0.5);
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-flame-600 rounded-lg;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-flame-500;
 }

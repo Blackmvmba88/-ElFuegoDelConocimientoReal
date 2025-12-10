@@ -1,137 +1,127 @@
-import Link from 'next/link';
+'use client'
 
-export const dynamic = 'force-dynamic';
+import { useState } from 'react'
+import { CamaraDeGrados } from '@/components/CamaraDeGrados'
+import { ForjaDeTextos } from '@/components/ForjaDeTextos'
+import { BibliotecaViva } from '@/components/BibliotecaViva'
+import { LlamaTrina } from '@/components/LlamaTrina'
 
 export default function Home() {
-  return (
-    <div className="max-w-6xl mx-auto">
-      {/* Hero Section */}
-      <section className="text-center py-20">
-        <div className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-flame-primary to-flame-secondary flame-glow mb-8 animate-pulse">
-          <span className="text-6xl">🔥</span>
-        </div>
-        
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-flame-primary to-flame-secondary bg-clip-text text-transparent">
-          El Fuego del Conocimiento Real
-        </h1>
-        
-        <p className="text-xl text-gray-600 dark:text-gray-400 mb-4 max-w-3xl mx-auto">
-          Proyecto Épico de Web UI - Grado 33
-        </p>
-        
-        <p className="text-lg text-gray-500 dark:text-gray-500 mb-12 italic">
-          &ldquo;No buscamos encender una llama más. Buscamos despertar el fuego que ya arde en cada alma.&rdquo;
-        </p>
+  const [activeSection, setActiveSection] = useState<string>('home')
 
-        <div className="flex gap-4 justify-center">
-          <Link
-            href="/chambers"
-            className="px-8 py-4 bg-gradient-to-r from-flame-primary to-flame-secondary text-white rounded-lg font-semibold hover:opacity-90 transition-opacity shadow-lg hover:shadow-xl"
-          >
-            Explorar Cámaras
-          </Link>
-          <Link
-            href="/library"
-            className="px-8 py-4 bg-white dark:bg-shadow-light border-2 border-flame-primary dark:border-flame-secondary text-flame-primary dark:text-flame-secondary rounded-lg font-semibold hover:bg-flame-primary hover:text-white dark:hover:bg-flame-secondary transition-all shadow-lg hover:shadow-xl"
-          >
-            Biblioteca Viva
-          </Link>
+  return (
+    <div className="space-y-12">
+      {/* Hero Section */}
+      <section className="text-center py-16 relative">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-flame-500 rounded-full blur-3xl animate-pulse-slow"></div>
+        </div>
+        <div className="relative z-10">
+          <h1 className="text-6xl font-bold mb-4 flame-glow text-flame-400">
+            🔥 El Fuego del Conocimiento Real
+          </h1>
+          <p className="text-xl text-gray-300 mb-2">
+            Grado 33 - Constructor del Universo Interior
+          </p>
+          <p className="text-lg text-mystic-400 mystic-glow max-w-3xl mx-auto mt-8">
+            Un programa digital alquímico-masónico para expandir la conciencia,
+            organizar la sabiduría y generar conocimiento nuevo mediante la integración
+            de textos, símbolos y fuego cuántico.
+          </p>
         </div>
       </section>
 
-      {/* Pilares Section */}
-      <section className="py-16">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+      {/* Quick Access Cards */}
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <button
+          onClick={() => setActiveSection('camara')}
+          className="group p-6 rounded-lg bg-gradient-to-br from-flame-900/50 to-flame-800/30 border border-flame-700/50 hover:border-flame-500 transition-all duration-300 hover:shadow-lg hover:shadow-flame-500/20"
+        >
+          <div className="text-4xl mb-3">🏛️</div>
+          <h3 className="text-xl font-bold text-flame-400 mb-2">Cámara de Grados</h3>
+          <p className="text-sm text-gray-400">Acceso por iniciación digital</p>
+        </button>
+
+        <button
+          onClick={() => setActiveSection('forja')}
+          className="group p-6 rounded-lg bg-gradient-to-br from-mystic-900/50 to-mystic-800/30 border border-mystic-700/50 hover:border-mystic-500 transition-all duration-300 hover:shadow-lg hover:shadow-mystic-500/20"
+        >
+          <div className="text-4xl mb-3">⚒️</div>
+          <h3 className="text-xl font-bold text-mystic-400 mb-2">Forja de Textos</h3>
+          <p className="text-sm text-gray-400">Crear y reescribir conocimiento</p>
+        </button>
+
+        <button
+          onClick={() => setActiveSection('biblioteca')}
+          className="group p-6 rounded-lg bg-gradient-to-br from-hermetic-900/50 to-hermetic-800/30 border border-hermetic-700/50 hover:border-hermetic-500 transition-all duration-300 hover:shadow-lg hover:shadow-hermetic-500/20"
+        >
+          <div className="text-4xl mb-3">📚</div>
+          <h3 className="text-xl font-bold text-hermetic-400 mb-2">Biblioteca Viva</h3>
+          <p className="text-sm text-gray-400">Búsqueda y lectura de obras</p>
+        </button>
+
+        <button
+          onClick={() => setActiveSection('llama')}
+          className="group p-6 rounded-lg bg-gradient-to-br from-orange-900/50 to-red-800/30 border border-orange-700/50 hover:border-orange-500 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/20"
+        >
+          <div className="text-4xl mb-3">🔥</div>
+          <h3 className="text-xl font-bold text-orange-400 mb-2">Llama Trina</h3>
+          <p className="text-sm text-gray-400">Visualizador energético</p>
+        </button>
+      </section>
+
+      {/* Active Section Display */}
+      <section className="mt-12">
+        {activeSection === 'camara' && <CamaraDeGrados />}
+        {activeSection === 'forja' && <ForjaDeTextos />}
+        {activeSection === 'biblioteca' && <BibliotecaViva />}
+        {activeSection === 'llama' && <LlamaTrina />}
+        {activeSection === 'home' && (
+          <div className="text-center py-12 text-gray-400">
+            <p className="text-lg">Selecciona una sección para comenzar tu viaje iniciático</p>
+          </div>
+        )}
+      </section>
+
+      {/* Pillars Section */}
+      <section className="mt-16">
+        <h2 className="text-3xl font-bold text-center mb-8 text-flame-400">
           Los Cuatro Pilares
         </h2>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="p-6 rounded-xl bg-white dark:bg-shadow-light border border-gray-200 dark:border-gray-700 hover:border-flame-primary dark:hover:border-flame-secondary transition-colors">
-            <div className="text-4xl mb-4">🔺</div>
-            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-              Masonería Simbólica
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Estructura por grados y cámaras de conocimiento progresivo.
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="p-6 rounded-lg bg-gray-800/50 border border-gray-700">
+            <div className="text-3xl mb-3 text-center">🔺</div>
+            <h3 className="text-lg font-bold text-flame-400 mb-2 text-center">Masonería Simbólica</h3>
+            <p className="text-sm text-gray-400 text-center">
+              Estructura por grados y cámaras sagradas
             </p>
           </div>
 
-          <div className="p-6 rounded-xl bg-white dark:bg-shadow-light border border-gray-200 dark:border-gray-700 hover:border-flame-primary dark:hover:border-flame-secondary transition-colors">
-            <div className="text-4xl mb-4">⚗️</div>
-            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-              Alquimia Operativa
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Transmutación de información y energía verbal.
+          <div className="p-6 rounded-lg bg-gray-800/50 border border-gray-700">
+            <div className="text-3xl mb-3 text-center">⚗️</div>
+            <h3 className="text-lg font-bold text-mystic-400 mb-2 text-center">Alquimia Operativa</h3>
+            <p className="text-sm text-gray-400 text-center">
+              Transmutación de información y energía
             </p>
           </div>
 
-          <div className="p-6 rounded-xl bg-white dark:bg-shadow-light border border-gray-200 dark:border-gray-700 hover:border-flame-primary dark:hover:border-flame-secondary transition-colors">
-            <div className="text-4xl mb-4">🤖</div>
-            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-              IA Semántica
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Lectura, análisis y creación de nuevos libros.
+          <div className="p-6 rounded-lg bg-gray-800/50 border border-gray-700">
+            <div className="text-3xl mb-3 text-center">🤖</div>
+            <h3 className="text-lg font-bold text-hermetic-400 mb-2 text-center">IA Semántica</h3>
+            <p className="text-sm text-gray-400 text-center">
+              Lectura, análisis y creación de nuevos libros
             </p>
           </div>
 
-          <div className="p-6 rounded-xl bg-white dark:bg-shadow-light border border-gray-200 dark:border-gray-700 hover:border-flame-primary dark:hover:border-flame-secondary transition-colors">
-            <div className="text-4xl mb-4">🌌</div>
-            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-              Filosofía Cuántica
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              El verbo como energía vibratoria universal.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Roadmap Status */}
-      <section className="py-16">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-          Estado del Proyecto
-        </h2>
-        
-        <div className="max-w-3xl mx-auto space-y-6">
-          <div className="p-6 rounded-xl bg-white dark:bg-shadow-light border-2 border-green-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                Fase 1 – Fuego Semilla (En Progreso)
-              </h3>
-            </div>
-            <p className="text-gray-600 dark:text-gray-400 ml-6">
-              Estructura base, sistema de cámaras, motor de texto y conexión con API de libros abiertos.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-xl bg-white dark:bg-shadow-light border-2 border-gray-300 dark:border-gray-700 opacity-60">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                Fase 2 – Fuego Operativo (Próximamente)
-              </h3>
-            </div>
-            <p className="text-gray-600 dark:text-gray-400 ml-6">
-              IA Hermética, biblioteca viva y análisis semántico.
-            </p>
-          </div>
-
-          <div className="p-6 rounded-xl bg-white dark:bg-shadow-light border-2 border-gray-300 dark:border-gray-700 opacity-60">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                Fase 3 – Fuego Sagrado (Futuro)
-              </h3>
-            </div>
-            <p className="text-gray-600 dark:text-gray-400 ml-6">
-              Visualizador 3D con Llama Trina y animaciones rituales.
+          <div className="p-6 rounded-lg bg-gray-800/50 border border-gray-700">
+            <div className="text-3xl mb-3 text-center">⚛️</div>
+            <h3 className="text-lg font-bold text-orange-400 mb-2 text-center">Filosofía Cuántica</h3>
+            <p className="text-sm text-gray-400 text-center">
+              Interpretación del verbo como energía vibratoria
             </p>
           </div>
         </div>
       </section>
     </div>
-  );
+  )
 }

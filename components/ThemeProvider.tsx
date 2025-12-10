@@ -1,71 +1,53 @@
-'use client';
+'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react'
 
-type Theme = 'light' | 'dark';
+type Theme = 'light' | 'dark'
 
 interface ThemeContextType {
-  theme: Theme;
-  toggleTheme: () => void;
+  theme: Theme
+  toggleTheme: () => void
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const ThemeContext = createContext<ThemeContextType>({
+  theme: 'dark',
+  toggleTheme: () => {}
+})
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState<Theme>('dark')
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true);
-    // Cargar tema guardado o usar preferencia del sistema
-    try {
-      const savedTheme = localStorage.getItem('theme') as Theme;
+    setMounted(true)
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme') as Theme | null
       if (savedTheme) {
-        setTheme(savedTheme);
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme('dark');
-      } else {
-        setTheme('light');
+        setTheme(savedTheme)
       }
-    } catch {
-      // Fallback to dark theme if localStorage is not available
-      setTheme('dark');
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    if (!mounted) return;
-
-    const root = window.document.documentElement;
-    root.classList.remove('light', 'dark');
-    root.classList.add(theme);
-    try {
-      localStorage.setItem('theme', theme);
-    } catch {
-      // Ignore localStorage errors
-    }
-  }, [theme, mounted]);
+    if (!mounted || typeof window === 'undefined') return
+    
+    const root = window.document.documentElement
+    root.classList.remove('light', 'dark')
+    root.classList.add(theme)
+    localStorage.setItem('theme', theme)
+  }, [theme, mounted])
 
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
-
-  // Evitar flash de contenido sin estilo
-  if (!mounted) {
-    return <>{children}</>;
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
   }
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
-  );
+  )
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
+  return useContext(ThemeContext)
 }
