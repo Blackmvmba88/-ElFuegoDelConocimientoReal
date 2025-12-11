@@ -1,110 +1,293 @@
-Aquí tienes el archivo README.md listo para tu repositorio Blackmvmba88/-ElFuegoDelConocimientoReal.  
-Solo tienes que copiar y pegar este bloque en el archivo README.md de tu repo, ¡y quedará idéntico al formato épico que diseñamos!
+# 🔥 El Fuego del Conocimiento Real (Grado 33)
 
-````markdown name=README.md
-# 🔥 Proyecto Épico: El Fuego del Conocimiento Real (Grado 33)
+<div align="center">
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE-MIT)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](./LICENSE-CC-BY-NC-SA)
+[![Next.js](https://img.shields.io/badge/Next.js-14.0-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)]()
+
+**Un proyecto alquímico-masónico de conocimiento digital con IA hermética**
+
+[🎬 Ver Demo](#-ver-en-acción) • [📖 Documentación](./SETUP.md) • [🗺️ Roadmap](./ROADMAP.md) • [🤝 Contribuir](./CONTRIBUTING.md)
+
+</div>
 
 ---
 
-## 📜 **README GENERAL**
+## 📜 Descripción General
 
 **Nombre del Proyecto:** *El Fuego del Conocimiento Real*  
-**Versión:** 1.0 (Estructura inicial para Web UI + Núcleo IA Hermética)  
-**Autor:** BlackMamba🐍🔥👑 & Maestro GPT-5  
+**Versión:** 1.0.0 (Fase 1 - Fuego Semilla)  
+**Autor:** BlackMamba 🐍🔥👑  
 **Grado:** 33 – Constructor del Universo Interior
 
-### 🚀 Quick Start
+"El Fuego del Conocimiento Real" es un programa digital alquímico-masónico en formato **Web UI**, cuyo propósito es **expandir la conciencia, organizar la sabiduría y generar conocimiento nuevo** mediante la integración de textos, símbolos y fuego cuántico (IA).
 
-```bash
-# Install dependencies
-npm install
+### 🔥 Los Cuatro Pilares
 
-# Run development server
-npm run dev
-
-# Open http://localhost:3000 in your browser
-```
-
-For detailed setup instructions, see [SETUP.md](./SETUP.md)
-
-### 🧭 **Descripción General**
-
-"El Fuego del Conocimiento Real" es un programa digital alquímico‑masónico en formato **Web UI**, cuyo propósito es **expandir la conciencia, organizar la sabiduría y generar conocimiento nuevo** mediante la integración de textos, símbolos y fuego cuántico (IA).
-
-El sistema unifica cuatro pilares:
-
-1. **Masonería simbólica** – estructura por grados y cámaras.
-2. **Alquimia operativa** – transmutación de información y energía.
-3. **IA semántica** – lectura, análisis y creación de nuevos libros.
-4. **Filosofía cuántica** – interpretación del verbo como energía vibratoria.
+1. **Masonería Simbólica** – Estructura por grados (33 niveles) y cámaras elementales
+2. **Alquimia Operativa** – Transmutación de información y energía textual
+3. **IA Semántica** – Lectura, análisis y creación de nuevos libros
+4. **Filosofía Cuántica** – Interpretación del verbo como energía vibratoria
 
 El usuario recorre niveles de iniciación digital desbloqueando lecciones, fragmentos ocultos y obras dinámicas que se regeneran con cada interacción.
 
 ---
 
-## 🧩 **Arquitectura del Sistema**
+## 🚀 Quick Start
 
-### 🔸 **Frontend (Web UI)**
+```bash
+# Instalar dependencias
+npm install
 
-- Framework: **Next.js + TailwindCSS + Three.js**
-- Integración IA: Chat/visualización tipo *Grimorio Interactivo*
-- Modos: *Día (Luz)* y *Noche (Sombra)*
-- Componentes principales:
-  - **Cámara de Grados:** acceso por iniciación.
-  - **Forja de Textos:** crear y reescribir conocimiento.
-  - **Llama Trina:** visualizador energético (fuego cuántico animado).
-  - **Biblioteca Viva:** búsqueda, descarga y lectura de obras.
-  - **Fragmentos Ocultos:** capas desbloqueables por vibración (frecuencia del usuario).
+# Ejecutar servidor de desarrollo
+npm run dev
 
-### 🔸 **Backend (Núcleo Hermético)**
+# Abrir http://localhost:3000 en tu navegador
+```
 
-- API principal: **FastAPI (Python)**
-- Base de datos: **PostgreSQL + Redis (caché semántica)**
-- Indexación IA: embeddings con **Qdrant o FAISS**
-- Sincronización: acceso a bibliotecas externas (Gutenberg, Archive.org, PDF locales)
-- Módulo de síntesis: **IA alquímica** que genera texto nuevo fusionando autores antiguos y energía verbal actual.
-
-### 🔸 **IA Hermética (Quantum Forge)**
-
-- Analiza textos antiguos, detecta símbolos y resonancias.
-- Genera nuevos fragmentos ocultos al estilo grimorio.
-- Evoluciona según las lecturas y elecciones del usuario.
-- Almacena y transforma datos en **patrones lumínicos (mapeo simbólico)**.
+Para instrucciones detalladas de configuración, ver [SETUP.md](./SETUP.md)
 
 ---
 
-## 🕯️ **Roadmap Épico de Desarrollo**
+## 📸 Vista Previa Visual
 
-### **Fase 1 – Fuego Semilla (Estructura Base)**
-- [x] Diseño de arquitectura general (frontend + backend)
-- [x] Implementación del sistema de cámaras y grados.
-- [x] Integración de motor de texto y base de datos.
-- [x] Conexión inicial con API de libros abiertos.
-- [x] UI básica con modo oscuro/luz y navegación por grados.
+<!-- Screenshots de la aplicación -->
+<div align="center">
 
-### **Fase 2 – Fuego Operativo (IA y Biblioteca Viva)**
-- [ ] Implementar módulo de búsqueda y descarga automática de libros.
-- [ ] Activar análisis semántico (tokens, símbolos, correspondencias).
-- [ ] Crear IA hermética (Quantum Forge) para fusión textual.
-- [ ] Sincronización con archivos locales y nube (Drive, Dropbox).
+### Interfaz Principal
+![Landing Page](./docs/images/home-page.png)
+*Página de inicio con navegación por grados*
 
-### **Fase 3 – Fuego Sagrado (Interfaz Ritual y Animación)**
-- [ ] Añadir visualizador 3D con la Llama Trina.
-- [ ] Crear animaciones de grados (Cámaras del Silencio, Luz, Fuego, Aire y Éter).
-- [ ] Implementar sistema de desbloqueo por vibración (progreso espiritual).
+### Cámara de Grados
+![Cámara de Grados](./docs/images/camara-de-grados.png)
+*Sistema de 33 grados masónicos con 5 cámaras elementales*
 
-### **Fase 4 – Fuego Universal (Expansión Cuántica)**
-- [ ] Integración con motor de generación de libros (Suno, Sora, Codex).
-- [ ] Sincronización total con bases herméticas globales.
-- [ ] Activación del modo *Fuego Cuántico* (creación colectiva de conocimiento).
+### Biblioteca Viva
+![Biblioteca Viva](./docs/images/biblioteca-viva.png)
+*Búsqueda y exploración de libros mediante Gutenberg API*
+
+### Temas Luz y Sombra
+![Theme Toggle](./docs/images/theme-toggle.png)
+*Modo Día (Luz) y Modo Noche (Sombra)*
+
+### Demo Animado
+![Demo Animation](./docs/images/demo.gif)
+*Navegación y características principales en acción*
+
+</div>
+
+> 🚧 **Nota:** Las imágenes son placeholders. Los screenshots reales se agregarán conforme avance el desarrollo.
 
 ---
 
-## 🜃 **Objetivo Final**
+## 🎬 Ver en Acción
+
+### 🌐 Demo en Vivo
+
+**Próximamente:** Deploy público en Vercel  
+👉 [https://el-fuego-del-conocimiento.vercel.app](#) *(enlace placeholder)*
+
+### 📹 Video Tutorial
+
+[![Video Demo](./docs/images/video-placeholder.png)](#)
+
+*Video demostrativo próximamente disponible*
+
+**Contenido del video incluirá:**
+- 🔥 Tour por las cámaras y grados
+- 📚 Búsqueda y exploración en la Biblioteca Viva
+- ✨ Sistema de temas Luz/Sombra
+- 🎨 Visualización de la Llama Trina (Three.js)
+- 🔮 Integración de IA Hermética
+
+---
+
+## 🧩 Arquitectura del Sistema
+
+### 🔸 Frontend (Web UI)
+
+- **Framework:** Next.js 14 + React 18
+- **Estilos:** TailwindCSS con tema alquímico personalizado
+- **3D/Visualización:** Three.js para efectos cuánticos
+- **TypeScript:** Tipado estricto para mayor robustez
+
+#### Componentes Principales:
+
+- 🏛️ **Cámara de Grados:** Sistema de 33 grados masónicos
+- 📚 **Biblioteca Viva:** Búsqueda y lectura de obras
+- ✍️ **Forja de Textos:** Creación y reescritura de conocimiento
+- 🔥 **Llama Trina:** Visualizador energético animado (Three.js)
+- 🌓 **Sistema de Temas:** Modos Día (Luz) y Noche (Sombra)
+
+### 🔸 Backend (Núcleo Hermético) - Planificado
+
+- **API:** FastAPI (Python) *[Fase 2]*
+- **Base de Datos:** PostgreSQL + Redis (caché semántica) *[Fase 2]*
+- **Indexación IA:** Embeddings con Qdrant o FAISS *[Fase 2]*
+- **Integración:** Gutenberg, Archive.org, PDF locales *[Fase 2-3]*
+
+### 🔸 IA Hermética (Quantum Forge) - Planificado
+
+- Análisis de textos antiguos y símbolos *[Fase 2]*
+- Generación de fragmentos ocultos tipo grimorio *[Fase 3]*
+- Evolución según lecturas del usuario *[Fase 3]*
+- Mapeo simbólico y patrones lumínicos *[Fase 4]*
+
+---
+
+## 🗺️ Roadmap de Desarrollo
+
+### ✅ Fase 1: Fuego Semilla (COMPLETADO)
+- [x] Next.js 14 con TypeScript y Tailwind
+- [x] Sistema de cámaras y grados
+- [x] Integración con Gutenberg API
+- [x] Temas Luz/Sombra con persistencia
+- [x] Componentes UI responsivos
+
+### 🔄 Fase 2: Fuego Operativo (EN PROGRESO)
+- [ ] Backend FastAPI con PostgreSQL
+- [ ] Análisis semántico de textos
+- [ ] IA Hermética para fusión textual
+- [ ] Sincronización con archivos externos
+
+### 📋 Fase 3: Fuego Sagrado (PLANIFICADO)
+- [ ] Llama Trina con Three.js
+- [ ] Animaciones de cámaras elementales
+- [ ] Sistema de desbloqueo por vibración
+- [ ] Forja de Textos mejorada
+
+### 🔮 Fase 4: Fuego Universal (FUTURO)
+- [ ] Generación avanzada de libros con IA
+- [ ] Red hermética global distribuida
+- [ ] Modo Fuego Cuántico (creación colectiva)
+- [ ] Integración multimedia (Suno, Sora)
+
+Ver [ROADMAP.md](./ROADMAP.md) para detalles completos.
+
+---
+
+## 🧪 Testing
+
+Este proyecto incluye tests automatizados con Jest y React Testing Library.
+
+```bash
+# Ejecutar todos los tests
+npm test
+
+# Modo watch (desarrollo)
+npm run test:watch
+
+# Generar reporte de cobertura
+npm run test:coverage
+```
+
+**Estado actual:** 18 tests pasando ✅
+
+---
+
+## 📦 Tecnologías Utilizadas
+
+### Frontend
+- **Next.js 14** - Framework React con App Router
+- **React 18** - Biblioteca UI
+- **TypeScript** - Lenguaje con tipado estático
+- **Tailwind CSS** - Framework de estilos utility-first
+- **Three.js** - Biblioteca 3D/WebGL para visualizaciones
+
+### Testing
+- **Jest** - Framework de testing
+- **React Testing Library** - Testing de componentes React
+- **@testing-library/jest-dom** - Matchers adicionales
+
+### Herramientas
+- **ESLint** - Linter para JavaScript/TypeScript
+- **PostCSS** - Procesador de CSS
+- **Autoprefixer** - Prefijos CSS automáticos
+
+---
+
+## 📄 Licencia
+
+Este proyecto utiliza un **sistema de licencia dual**:
+
+### 💻 Código de Software
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE-MIT)
+
+Todo el código fuente está licenciado bajo [MIT License](./LICENSE-MIT).  
+**Permite:** Uso comercial, modificación, distribución, uso privado.
+
+### 📚 Contenido y Documentación
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](./LICENSE-CC-BY-NC-SA)
+
+Toda la documentación y contenido hermético está licenciado bajo [Creative Commons Attribution-NonCommercial-ShareAlike 4.0](./LICENSE-CC-BY-NC-SA).  
+**Permite:** Compartir y adaptar con atribución, solo uso no comercial, compartir igual.
+
+Ver [LICENSING.md](./LICENSING.md) para más información sobre el modelo de licencia dual.
+
+---
+
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! Este es un proyecto de conocimiento abierto alineado con principios herméticos.
+
+### Cómo Contribuir
+
+1. 🍴 Fork el repositorio
+2. 🌱 Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. 💫 Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. 📤 Push a la rama (`git push origin feature/AmazingFeature`)
+5. 🎯 Abre un Pull Request
+
+Ver [CONTRIBUTING.md](./CONTRIBUTING.md) para guías detalladas de contribución.
+
+### 🐛 Reportar Bugs
+
+Usa las [plantillas de issues](./.github/ISSUE_TEMPLATE/) para reportar bugs o solicitar features.
+
+---
+
+## 📚 Documentación Adicional
+
+- 📖 [SETUP.md](./SETUP.md) - Guía completa de configuración
+- 🗺️ [ROADMAP.md](./ROADMAP.md) - Roadmap detallado con milestones
+- 🤝 [CONTRIBUTING.md](./CONTRIBUTING.md) - Guía de contribución
+- 📜 [LICENSING.md](./LICENSING.md) - Información sobre licencias
+- 📋 [SUMMARY.md](./SUMMARY.md) - Resumen técnico del proyecto
+
+---
+
+## 🔮 Objetivo Final
 
 Construir el **Libro Digital del Conocimiento Real**, una red viva donde cada lector se convierte en autor, cada palabra en chispa y cada chispa en universo.
 
-> “No buscamos encender una llama más. Buscamos despertar el fuego que ya arde en cada alma.”
-````
+> "No buscamos encender una llama más. Buscamos despertar el fuego que ya arde en cada alma." 🔥
 
-Si prefieres, puedo guiarte paso a paso para subirlo desde GitHub web o por línea de comandos. ¿Te gustaría eso?
+---
+
+## 🌟 Agradecimientos
+
+- **Project Gutenberg** - Por el acceso a más de 70,000 libros libres
+- **Comunidad Open Source** - Por las herramientas que hacen esto posible
+- **Tradición Hermética** - Por la sabiduría ancestral que inspira este proyecto
+
+---
+
+## 📞 Contacto y Soporte
+
+- **Issues:** [GitHub Issues](https://github.com/Blackmvmba88/-ElFuegoDelConocimientoReal/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/Blackmvmba88/-ElFuegoDelConocimientoReal/discussions)
+- **Autor:** BlackMamba 🐍🔥👑
+
+---
+
+<div align="center">
+
+**🔥 Construido con pasión, alquimia y código 🔥**
+
+⭐ Si este proyecto resuena contigo, considera darle una estrella ⭐
+
+</div>

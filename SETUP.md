@@ -146,11 +146,145 @@ npx tsc --noEmit
 
 ## 🚀 Deployment
 
-The application can be deployed to any platform that supports Next.js:
+The application can be deployed to any platform that supports Next.js. Below are detailed instructions for the most popular platforms.
 
-- **Vercel** (recommended): `vercel deploy`
-- **Netlify**: Connect your repository
-- **Docker**: Build with the included Dockerfile (to be added)
+### 🌟 Vercel (Recommended)
+
+Vercel is the creators of Next.js and provides the best deployment experience.
+
+#### Option 1: Deploy via Git Integration (Easiest)
+
+1. **Push your code** to GitHub, GitLab, or Bitbucket
+2. **Visit** [vercel.com](https://vercel.com)
+3. **Import** your repository
+4. **Configure** (optional - Vercel auto-detects Next.js)
+5. **Deploy** - Your site will be live in minutes!
+
+Your site will auto-deploy on every push to your main branch.
+
+#### Option 2: Deploy via Vercel CLI
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Login to Vercel
+vercel login
+
+# Deploy to preview
+vercel
+
+# Deploy to production
+vercel --prod
+```
+
+#### Vercel Configuration
+
+The project includes a `vercel.json` with optimized settings:
+- Build command: `npm run build`
+- Output directory: `.next`
+- Node.js version: Auto-detected
+- Security headers pre-configured
+
+#### Environment Variables (if needed)
+
+Add environment variables in Vercel dashboard:
+1. Go to Project Settings → Environment Variables
+2. Add variables for each environment:
+   - `NEXT_PUBLIC_APP_NAME` (optional)
+   - Future backend URL variables (Phase 2)
+
+#### Custom Domain
+
+1. Go to Project Settings → Domains
+2. Add your custom domain
+3. Configure DNS records as instructed
+4. SSL certificate is auto-configured
+
+### 🚢 Netlify
+
+Deploy with continuous integration:
+
+1. **Connect** your repository to Netlify
+2. **Configure** build settings:
+   - Build command: `npm run build`
+   - Publish directory: `.next`
+   - Node version: 18 or higher
+3. **Deploy** - Site goes live automatically
+
+Add `netlify.toml` for advanced configuration:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+```
+
+### 🐳 Docker
+
+Build and run with Docker:
+
+```bash
+# Build image
+docker build -t el-fuego-conocimiento .
+
+# Run container
+docker run -p 3000:3000 el-fuego-conocimiento
+```
+
+**Dockerfile** (to be added in future):
+```dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY . .
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+```
+
+### ☁️ Other Platforms
+
+The application can also be deployed to:
+
+- **AWS Amplify:** Connect repository and deploy
+- **Google Cloud Run:** Build container and deploy
+- **DigitalOcean App Platform:** Import from GitHub
+- **Railway:** One-click deploy from GitHub
+- **Render:** Connect and auto-deploy
+
+### 📊 Post-Deployment Checklist
+
+After deployment, verify:
+
+- [ ] Site loads correctly
+- [ ] Dark/Light theme works
+- [ ] Navigation functions properly
+- [ ] Gutenberg API integration works
+- [ ] All pages render without errors
+- [ ] Mobile responsive design displays correctly
+- [ ] SSL certificate is active (https)
+
+### 🔍 Monitoring & Analytics (Optional)
+
+Consider adding:
+
+- **Vercel Analytics:** Built-in performance monitoring
+- **Google Analytics:** User behavior tracking
+- **Sentry:** Error tracking and monitoring
+- **LogRocket:** Session replay for debugging
 
 ## 📱 Browser Support
 
@@ -171,9 +305,15 @@ The application can be deployed to any platform that supports Next.js:
 
 This is a personal masonic-alchemical project. Contributions aligned with the hermetic vision are welcome.
 
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed contribution guidelines.
+
 ## 📄 License
 
-MIT License - See LICENSE file for details
+Dual License:
+- **Software Code:** [MIT License](./LICENSE-MIT)
+- **Content/Documentation:** [CC BY-NC-SA 4.0](./LICENSE-CC-BY-NC-SA)
+
+See [LICENSING.md](./LICENSING.md) for details
 
 ---
 

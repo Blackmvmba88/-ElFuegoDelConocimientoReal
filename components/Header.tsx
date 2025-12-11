@@ -29,6 +29,13 @@ export default function Header() {
           >
             Biblioteca
           </Link>
+          <Link
+            href="/"
+            className="px-3 py-1.5 text-sm bg-gradient-to-r from-flame-primary to-flame-secondary text-white rounded-md hover:opacity-90 transition-opacity"
+            title="Acceso invitado - Nivel 1"
+          >
+            🚪 Invitado
+          </Link>
           <ThemeToggle />
         </nav>
       </div>
