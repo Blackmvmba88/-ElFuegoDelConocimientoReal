@@ -5,6 +5,7 @@ import { CamaraDeGrados } from '@/components/CamaraDeGrados'
 import { ForjaDeTextos } from '@/components/ForjaDeTextos'
 import { BibliotecaViva } from '@/components/BibliotecaViva'
 import { LlamaTrina } from '@/components/LlamaTrina'
+import GuestMode from '@/components/GuestMode'
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string>('home')
@@ -81,6 +82,11 @@ export default function Home() {
             <p className="text-lg">Selecciona una sección para comenzar tu viaje iniciático</p>
           </div>
         )}
+      </section>
+
+      {/* Guest Mode Section */}
+      <section className="mt-16">
+        <GuestMode onEnter={() => setActiveSection('biblioteca')} />
       </section>
 
       {/* Pillars Section */}
