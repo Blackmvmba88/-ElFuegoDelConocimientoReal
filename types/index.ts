@@ -47,3 +47,6 @@ export interface GutenbergResponse {
   previous: string | null;
   results: GutenbergBook[];
 }
+
+// Export event schema types
+export * from './event-schema';

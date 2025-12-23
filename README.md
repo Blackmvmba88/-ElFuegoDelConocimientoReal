@@ -258,6 +258,10 @@ Usa las [plantillas de issues](./.github/ISSUE_TEMPLATE/) para reportar bugs o s
 
 - 📖 [SETUP.md](./SETUP.md) - Guía completa de configuración
 - 🗺️ [ROADMAP.md](./ROADMAP.md) - Roadmap detallado con milestones
+- 🏛️ [docs/architecture.md](./docs/architecture.md) - Arquitectura del sistema y separación de responsabilidades
+- 🔄 [docs/sync-strategy.md](./docs/sync-strategy.md) - Sistema de sincronización y coordinación de estado
+- 🧪 [docs/testing-strategy.md](./docs/testing-strategy.md) - Estrategia de testing (tests que importan)
+- 📊 [docs/observability.md](./docs/observability.md) - Logging estructurado y métricas básicas
 - 🤝 [CONTRIBUTING.md](./CONTRIBUTING.md) - Guía de contribución
 - 📜 [LICENSING.md](./LICENSING.md) - Información sobre licencias
 - 📋 [SUMMARY.md](./SUMMARY.md) - Resumen técnico del proyecto

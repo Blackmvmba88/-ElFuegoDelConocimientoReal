@@ -363,7 +363,7 @@ export function isValidBaseEvent(event: unknown): event is BaseEvent {
 /**
  * Crea un evento con valores base garantizados
  */
-export function createEvent<T extends BaseEvent>(
+export function createEvent<T extends SystemEvent>(
   type: T['type'],
   payload: T['payload'],
   options?: {
@@ -377,7 +377,7 @@ export function createEvent<T extends BaseEvent>(
     confidence: options?.confidence ?? 1.0,
     duration: options?.duration,
     payload,
-  } as T;
+  } as unknown as T;
 }
 
 // ============================================================================
