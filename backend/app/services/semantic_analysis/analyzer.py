@@ -191,7 +191,7 @@ class SemanticAnalyzer:
 
 
 # Global instance
-_semantic_analyzer: SemanticAnalyzer = None
+_semantic_analyzer: Optional[SemanticAnalyzer] = None
 
 
 def get_semantic_analyzer() -> SemanticAnalyzer:

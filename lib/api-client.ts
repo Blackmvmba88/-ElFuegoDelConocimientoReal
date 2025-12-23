@@ -2,6 +2,7 @@
  * API client for El Fuego del Conocimiento Real backend
  * Handles all HTTP requests to the FastAPI backend
  */
+import type * as ApiTypes from './api-types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
@@ -40,22 +41,22 @@ async function fetchApi<T>(
 
 // Health Check
 export const health = {
-  check: async () => fetchApi('/health'),
+  check: async () => fetchApi<ApiTypes.HealthResponse>('/health'),
 };
 
 // Search API
 export const search = {
   searchBooks: async (query: string, filters?: Record<string, any>, limit = 20) =>
-    fetchApi('/api/search/search', {
+    fetchApi<ApiTypes.SearchResponse>('/api/search/search', {
       method: 'POST',
       body: JSON.stringify({ query, filters, limit }),
     }),
   
   getSuggestions: async (query: string, limit = 5) =>
-    fetchApi(`/api/search/suggestions?query=${encodeURIComponent(query)}&limit=${limit}`),
+    fetchApi<ApiTypes.SearchSuggestionsResponse>(`/api/search/suggestions?query=${encodeURIComponent(query)}&limit=${limit}`),
   
   getFilters: async () =>
-    fetchApi('/api/search/filters'),
+    fetchApi<ApiTypes.SearchFiltersResponse>('/api/search/filters'),
 };
 
 // Semantic Analysis API
@@ -68,16 +69,16 @@ export const semantic = {
       analyze_correspondences: true,
     }
   ) =>
-    fetchApi('/api/semantic/analyze', {
+    fetchApi<ApiTypes.SemanticAnalysisResponse>('/api/semantic/analyze', {
       method: 'POST',
       body: JSON.stringify({ text, ...options }),
     }),
   
   listSymbols: async () =>
-    fetchApi('/api/semantic/symbols'),
+    fetchApi<ApiTypes.SymbolsResponse>('/api/semantic/symbols'),
   
   listElements: async () =>
-    fetchApi('/api/semantic/elements'),
+    fetchApi<ApiTypes.ElementsResponse>('/api/semantic/elements'),
 };
 
 // Synthesis API
@@ -88,7 +89,7 @@ export const synthesis = {
     prompt?: string,
     model?: string
   ) =>
-    fetchApi('/api/synthesis/synthesize', {
+    fetchApi<ApiTypes.SynthesisResponse>('/api/synthesis/synthesize', {
       method: 'POST',
       body: JSON.stringify({
         source_book_ids: sourceBookIds,
@@ -102,7 +103,7 @@ export const synthesis = {
     text: string,
     transformationType: 'modernize' | 'archaize' | 'simplify' | 'amplify' | 'poetic'
   ) =>
-    fetchApi('/api/synthesis/transform', {
+    fetchApi<ApiTypes.TransformResponse>('/api/synthesis/transform', {
       method: 'POST',
       body: JSON.stringify({ text, transformation_type: transformationType }),
     }),
@@ -111,7 +112,7 @@ export const synthesis = {
     theme: string,
     style: 'alchemical' | 'masonic' | 'kabbalistic' = 'alchemical'
   ) =>
-    fetchApi('/api/synthesis/generate', {
+    fetchApi<ApiTypes.GenerateResponse>('/api/synthesis/generate', {
       method: 'POST',
       body: JSON.stringify({ theme, style }),
     }),
@@ -120,28 +121,28 @@ export const synthesis = {
 // State Sync API
 export const stateSync = {
   createSession: async (userId: number, deviceInfo?: string) =>
-    fetchApi('/api/sync/sessions', {
+    fetchApi<ApiTypes.SessionResponse>('/api/sync/sessions', {
       method: 'POST',
       body: JSON.stringify({ user_id: userId, device_info: deviceInfo }),
     }),
   
   getSession: async (sessionToken: string) =>
-    fetchApi(`/api/sync/sessions/${sessionToken}`),
+    fetchApi<ApiTypes.Session>(`/api/sync/sessions/${sessionToken}`),
   
   updateState: async (sessionToken: string, stateUpdates: Record<string, any>) =>
-    fetchApi(`/api/sync/sessions/${sessionToken}/state`, {
+    fetchApi<ApiTypes.SessionStateResponse>(`/api/sync/sessions/${sessionToken}/state`, {
       method: 'PUT',
       body: JSON.stringify(stateUpdates),
     }),
   
   syncAcrossDevices: async (sessionToken: string, stateUpdates: Record<string, any>) =>
-    fetchApi(`/api/sync/sessions/${sessionToken}/sync`, {
+    fetchApi<ApiTypes.SyncResponse>(`/api/sync/sessions/${sessionToken}/sync`, {
       method: 'POST',
       body: JSON.stringify(stateUpdates),
     }),
   
   deleteSession: async (sessionToken: string) =>
-    fetchApi(`/api/sync/sessions/${sessionToken}`, {
+    fetchApi<ApiTypes.SessionStateResponse>(`/api/sync/sessions/${sessionToken}`, {
       method: 'DELETE',
     }),
   
@@ -150,18 +151,18 @@ export const stateSync = {
     eventType: string,
     eventData: Record<string, any>
   ) =>
-    fetchApi(`/api/sync/sessions/${sessionToken}/events`, {
+    fetchApi<ApiTypes.SessionStateResponse>(`/api/sync/sessions/${sessionToken}/events`, {
       method: 'POST',
       body: JSON.stringify({ event_type: eventType, event_data: eventData }),
     }),
   
   getEvents: async (sessionToken: string, limit?: number) => {
     const params = limit ? `?limit=${limit}` : '';
-    return fetchApi(`/api/sync/sessions/${sessionToken}/events${params}`);
+    return fetchApi<ApiTypes.EventsResponse>(`/api/sync/sessions/${sessionToken}/events${params}`);
   },
   
   getUserSessions: async (userId: number) =>
-    fetchApi(`/api/sync/users/${userId}/sessions`),
+    fetchApi<ApiTypes.UserSessionsResponse>(`/api/sync/users/${userId}/sessions`),
 };
 
 export default {

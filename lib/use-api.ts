@@ -3,6 +3,7 @@
  */
 import { useState, useCallback } from 'react';
 import apiClient from './api-client';
+import type * as ApiTypes from './api-types';
 
 interface UseApiState<T> {
   data: T | null;
@@ -44,7 +45,7 @@ export function useApi<T>() {
  * Hook for semantic text analysis
  */
 export function useSemanticAnalysis() {
-  const { data, loading, error, execute } = useApi<any>();
+  const { data, loading, error, execute } = useApi<ApiTypes.SemanticAnalysisResponse>();
 
   const analyzeText = useCallback(
     async (text: string) => {
@@ -60,7 +61,7 @@ export function useSemanticAnalysis() {
  * Hook for book search
  */
 export function useBookSearch() {
-  const { data, loading, error, execute } = useApi<any>();
+  const { data, loading, error, execute } = useApi<ApiTypes.SearchResponse>();
 
   const searchBooks = useCallback(
     async (query: string, filters?: Record<string, any>) => {
@@ -76,7 +77,7 @@ export function useBookSearch() {
  * Hook for text synthesis
  */
 export function useTextSynthesis() {
-  const { data, loading, error, execute } = useApi<any>();
+  const { data, loading, error, execute } = useApi<ApiTypes.SynthesisResponse | ApiTypes.TransformResponse | ApiTypes.GenerateResponse>();
 
   const synthesize = useCallback(
     async (
@@ -121,14 +122,14 @@ export function useTextSynthesis() {
  */
 export function useStateSync(userId: number) {
   const [sessionToken, setSessionToken] = useState<string | null>(null);
-  const { data, loading, error, execute } = useApi<any>();
+  const { data, loading, error, execute } = useApi<ApiTypes.SessionResponse | ApiTypes.SessionStateResponse | ApiTypes.SyncResponse>();
 
   const createSession = useCallback(
     async (deviceInfo?: string) => {
       const response = await execute(() =>
         apiClient.stateSync.createSession(userId, deviceInfo)
       );
-      if (response.data?.session_token) {
+      if (response.data && 'session_token' in response.data) {
         setSessionToken(response.data.session_token);
         // Store in localStorage for persistence
         localStorage.setItem('sessionToken', response.data.session_token);
@@ -184,7 +185,7 @@ export function useStateSync(userId: number) {
  * Hook for checking backend health
  */
 export function useHealthCheck() {
-  const { data, loading, error, execute } = useApi<any>();
+  const { data, loading, error, execute } = useApi<ApiTypes.HealthResponse>();
 
   const checkHealth = useCallback(async () => {
     return execute(() => apiClient.health.check());

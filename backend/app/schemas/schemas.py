@@ -139,10 +139,23 @@ class SemanticAnalysisRequest(BaseModel):
     analyze_correspondences: bool = True
 
 
+class HermeticSymbolDetail(BaseModel):
+    symbol: str
+    category: str
+    count: int
+    positions: List[int]
+
+
+class CorrespondenceDetail(BaseModel):
+    symbol: str
+    category: str
+    correspondences: List[str]
+
+
 class SemanticAnalysisResponse(BaseModel):
-    hermetic_symbols: List[Dict[str, any]]
+    hermetic_symbols: List[HermeticSymbolDetail]
     elemental_energy: Dict[str, float]
-    correspondences: List[Dict[str, any]]
+    correspondences: List[CorrespondenceDetail]
     summary: str
 
 
