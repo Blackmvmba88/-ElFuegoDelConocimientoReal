@@ -9,7 +9,11 @@
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)]()
 
-**Un proyecto alquímico-masónico de conocimiento digital con IA hermética**
+> *El Fuego del Conocimiento Real es una plataforma de evolución cognitiva que combina análisis semántico profundo, navegación estructurada por grados de conocimiento y síntesis inteligente de textos, transformando la lectura pasiva en transmutación activa de sabiduría.*
+
+**Qué resuelve**: Convierte el conocimiento disperso en progresión estructurada y genera nuevas síntesis desde textos antiguos.  
+**Para quién**: Investigadores, estudiosos herméticos, creadores de contenido filosófico, educadores de tradiciones sapienciales.  
+**Qué lo hace distinto**: Sistema de grados masónicos + IA semántica + cámaras elementales, no solo lectura sino transmutación de conocimiento.
 
 [🎬 Ver Demo](#-ver-en-acción) • [📖 Documentación](./SETUP.md) • [🗺️ Roadmap](./ROADMAP.md) • [🤝 Contribuir](./CONTRIBUTING.md)
 
