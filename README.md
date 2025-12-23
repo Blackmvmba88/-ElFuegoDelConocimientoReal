@@ -9,7 +9,11 @@
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)]()
 
-**Un proyecto alquímico-masónico de conocimiento digital con IA hermética**
+> *El Fuego del Conocimiento Real es una plataforma de evolución cognitiva que combina análisis semántico profundo, navegación estructurada por grados de conocimiento y síntesis inteligente de textos, transformando la lectura pasiva en transmutación activa de sabiduría.*
+
+**Qué resuelve**: Convierte el conocimiento disperso en progresión estructurada y genera nuevas síntesis desde textos antiguos.  
+**Para quién**: Investigadores, estudiosos herméticos, creadores de contenido filosófico, educadores de tradiciones sapienciales.  
+**Qué lo hace distinto**: Sistema de grados masónicos + IA semántica + cámaras elementales, no solo lectura sino transmutación de conocimiento.
 
 [🎬 Ver Demo](#-ver-en-acción) • [📖 Documentación](./SETUP.md) • [🗺️ Roadmap](./ROADMAP.md) • [🤝 Contribuir](./CONTRIBUTING.md)
 
@@ -254,6 +258,10 @@ Usa las [plantillas de issues](./.github/ISSUE_TEMPLATE/) para reportar bugs o s
 
 - 📖 [SETUP.md](./SETUP.md) - Guía completa de configuración
 - 🗺️ [ROADMAP.md](./ROADMAP.md) - Roadmap detallado con milestones
+- 🏛️ [docs/architecture.md](./docs/architecture.md) - Arquitectura del sistema y separación de responsabilidades
+- 🔄 [docs/sync-strategy.md](./docs/sync-strategy.md) - Sistema de sincronización y coordinación de estado
+- 🧪 [docs/testing-strategy.md](./docs/testing-strategy.md) - Estrategia de testing (tests que importan)
+- 📊 [docs/observability.md](./docs/observability.md) - Logging estructurado y métricas básicas
 - 🤝 [CONTRIBUTING.md](./CONTRIBUTING.md) - Guía de contribución
 - 📜 [LICENSING.md](./LICENSING.md) - Información sobre licencias
 - 📋 [SUMMARY.md](./SUMMARY.md) - Resumen técnico del proyecto
