@@ -3,6 +3,7 @@ Database initialization script.
 Creates all tables defined in models.
 """
 from app.db.session import engine, Base
+# Import models for SQLAlchemy metadata registration
 from app.models.models import (  # noqa: F401
     User,
     Book,
