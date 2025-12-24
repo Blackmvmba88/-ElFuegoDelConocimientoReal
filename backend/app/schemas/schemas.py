@@ -2,7 +2,7 @@
 Pydantic schemas for API request/response validation.
 """
 from datetime import datetime
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Any
 from pydantic import BaseModel, Field, EmailStr
 
 
@@ -60,7 +60,7 @@ class BookDetail(BookResponse):
 # Search schemas
 class SearchRequest(BaseModel):
     query: str
-    filters: Optional[Dict[str, any]] = None
+    filters: Optional[Dict[str, Any]] = None
     limit: int = Field(default=20, ge=1, le=100)
     offset: int = Field(default=0, ge=0)
 

@@ -1,7 +1,7 @@
 """
 Semantic analysis service for hermetic symbol detection and text energy analysis.
 """
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 import re
 from collections import Counter
 

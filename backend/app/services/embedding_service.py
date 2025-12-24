@@ -15,27 +15,47 @@ class EmbeddingService:
     """Service for generating and managing text embeddings."""
     
     def __init__(self):
-        self.model = SentenceTransformer(settings.embedding_model)
-        self.client = QdrantClient(
-            host=settings.qdrant_host,
-            port=settings.qdrant_port,
-        )
+        self.model = None
+        self.client = None
         self.collection_name = settings.qdrant_collection_name
-        self._ensure_collection()
+        self._initialized = False
+    
+    def _initialize(self) -> None:
+        """Lazy initialization of the embedding service."""
+        if self._initialized:
+            return
+        
+        try:
+            self.model = SentenceTransformer(settings.embedding_model)
+            self.client = QdrantClient(
+                host=settings.qdrant_host,
+                port=settings.qdrant_port,
+            )
+            self._ensure_collection()
+            self._initialized = True
+        except Exception as e:
+            print(f"Warning: Failed to initialize embedding service: {e}")
+            print("Embedding features will be disabled")
     
     def _ensure_collection(self) -> None:
         """Ensure the Qdrant collection exists."""
-        collections = self.client.get_collections()
-        collection_names = [col.name for col in collections.collections]
+        if not self.client:
+            return
         
-        if self.collection_name not in collection_names:
-            self.client.create_collection(
-                collection_name=self.collection_name,
-                vectors_config=VectorParams(
-                    size=settings.embedding_dimension,
-                    distance=Distance.COSINE,
-                ),
-            )
+        try:
+            collections = self.client.get_collections()
+            collection_names = [col.name for col in collections.collections]
+            
+            if self.collection_name not in collection_names:
+                self.client.create_collection(
+                    collection_name=self.collection_name,
+                    vectors_config=VectorParams(
+                        size=settings.embedding_dimension,
+                        distance=Distance.COSINE,
+                    ),
+                )
+        except Exception as e:
+            print(f"Warning: Failed to ensure collection: {e}")
     
     def generate_embedding(self, text: str) -> List[float]:
         """
@@ -47,6 +67,10 @@ class EmbeddingService:
         Returns:
             List of floats representing the embedding vector
         """
+        self._initialize()
+        if not self.model:
+            raise RuntimeError("Embedding service not initialized - model not available")
+        
         embedding = self.model.encode(text, convert_to_numpy=True)
         return embedding.tolist()
     
