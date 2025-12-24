@@ -18,18 +18,18 @@ async def create_session(
     Create a new session for a user.
     """
     sync_service = get_state_sync_service()
-    
+
     try:
         session_token = await sync_service.create_session(
             user_id=user_id,
             device_info=device_info,
         )
-        
+
         return {
             "session_token": session_token,
             "message": "Session created successfully",
         }
-    
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -40,12 +40,12 @@ async def get_session(session_token: str):
     Get session data.
     """
     sync_service = get_state_sync_service()
-    
+
     session = await sync_service.get_session(session_token)
-    
+
     if not session:
         raise HTTPException(status_code=404, detail="Session not found")
-    
+
     return session
 
 
@@ -58,15 +58,15 @@ async def update_session_state(
     Update session state.
     """
     sync_service = get_state_sync_service()
-    
+
     success = await sync_service.update_session_state(
         session_token=session_token,
         state_updates=state_updates,
     )
-    
+
     if not success:
         raise HTTPException(status_code=404, detail="Session not found")
-    
+
     return {"message": "State updated successfully"}
 
 
@@ -79,17 +79,17 @@ async def sync_state(
     Sync state across all user's devices.
     """
     sync_service = get_state_sync_service()
-    
+
     # Get session to find user_id
     session = await sync_service.get_session(session_token)
     if not session:
         raise HTTPException(status_code=404, detail="Session not found")
-    
+
     updated_count = await sync_service.sync_state_across_devices(
         user_id=session["user_id"],
         state_updates=state_updates,
     )
-    
+
     return {
         "message": f"State synced across {updated_count} devices",
         "devices_updated": updated_count,
@@ -102,12 +102,12 @@ async def delete_session(session_token: str):
     Delete a session.
     """
     sync_service = get_state_sync_service()
-    
+
     success = await sync_service.delete_session(session_token)
-    
+
     if not success:
         raise HTTPException(status_code=404, detail="Session not found")
-    
+
     return {"message": "Session deleted successfully"}
 
 
@@ -121,13 +121,13 @@ async def record_event(
     Record an event for debugging/replay.
     """
     sync_service = get_state_sync_service()
-    
+
     await sync_service.record_event(
         session_token=session_token,
         event_type=event_type,
         event_data=event_data,
     )
-    
+
     return {"message": "Event recorded"}
 
 
@@ -140,12 +140,12 @@ async def get_session_events(
     Get recorded events for a session.
     """
     sync_service = get_state_sync_service()
-    
+
     events = await sync_service.get_session_events(
         session_token=session_token,
         limit=limit,
     )
-    
+
     return {"events": events}
 
 
@@ -155,7 +155,7 @@ async def get_user_sessions(user_id: int):
     Get all active sessions for a user.
     """
     sync_service = get_state_sync_service()
-    
+
     sessions = await sync_service.get_user_sessions(user_id)
-    
+
     return {"sessions": sessions}

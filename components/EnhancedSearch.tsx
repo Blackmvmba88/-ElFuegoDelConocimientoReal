@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useBookSearch } from '@/lib/use-api';
 
-interface SearchFilters {
+interface SearchFilters extends Record<string, unknown> {
   author?: string;
   language?: string;
   element?: string;
@@ -157,7 +157,7 @@ export default function EnhancedSearch() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {results.results.map((book: { id: string; title: string; author?: string; description?: string; hermetic_symbols?: string[]; elemental_energy?: Record<string, number> }) => (
+            {results.results.map((book) => (
               <div
                 key={book.id}
                 className="p-4 rounded-lg border-2 border-amber-200 dark:border-amber-900

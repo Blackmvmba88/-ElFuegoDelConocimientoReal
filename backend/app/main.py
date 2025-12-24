@@ -17,9 +17,9 @@ async def lifespan(app: FastAPI):
     """
     # Startup
     print(f"Starting {settings.app_name} v{settings.app_version}")
-    
+
     yield
-    
+
     # Shutdown
     print("Shutting down...")
     await close_redis_client()
@@ -67,7 +67,7 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn
-    
+
     uvicorn.run(
         "app.main:app",
         host=settings.host,

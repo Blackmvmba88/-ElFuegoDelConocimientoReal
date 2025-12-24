@@ -5,7 +5,14 @@ Uses sentence-transformers for generating embeddings and Qdrant for storage.
 from typing import List, Optional, Dict, Any
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams, PointStruct, Filter, FieldCondition, MatchValue
+from qdrant_client.models import (
+    Distance,
+    VectorParams,
+    PointStruct,
+    Filter,
+    FieldCondition,
+    MatchValue,
+)
 import uuid
 
 from app.core.config import settings
@@ -13,18 +20,18 @@ from app.core.config import settings
 
 class EmbeddingService:
     """Service for generating and managing text embeddings."""
-    
+
     def __init__(self):
         self.model = None
         self.client = None
         self.collection_name = settings.qdrant_collection_name
         self._initialized = False
-    
+
     def _initialize(self) -> None:
         """Lazy initialization of the embedding service."""
         if self._initialized:
             return
-        
+
         try:
             self.model = SentenceTransformer(settings.embedding_model)
             self.client = QdrantClient(
@@ -36,16 +43,16 @@ class EmbeddingService:
         except Exception as e:
             print(f"Warning: Failed to initialize embedding service: {e}")
             print("Embedding features will be disabled")
-    
+
     def _ensure_collection(self) -> None:
         """Ensure the Qdrant collection exists."""
         if not self.client:
             return
-        
+
         try:
             collections = self.client.get_collections()
             collection_names = [col.name for col in collections.collections]
-            
+
             if self.collection_name not in collection_names:
                 self.client.create_collection(
                     collection_name=self.collection_name,
@@ -56,24 +63,24 @@ class EmbeddingService:
                 )
         except Exception as e:
             print(f"Warning: Failed to ensure collection: {e}")
-    
+
     def generate_embedding(self, text: str) -> List[float]:
         """
         Generate embedding vector for a text.
-        
+
         Args:
             text: Input text to embed
-            
+
         Returns:
             List of floats representing the embedding vector
         """
         self._initialize()
         if not self.model:
             raise RuntimeError("Embedding service not initialized - model not available")
-        
+
         embedding = self.model.encode(text, convert_to_numpy=True)
         return embedding.tolist()
-    
+
     def store_embedding(
         self,
         text: str,
@@ -82,20 +89,20 @@ class EmbeddingService:
     ) -> str:
         """
         Generate and store embedding in Qdrant.
-        
+
         Args:
             text: Text to embed and store
             metadata: Additional metadata to store with the embedding
             embedding_id: Optional custom ID, otherwise generates UUID
-            
+
         Returns:
             The ID of the stored embedding
         """
         if embedding_id is None:
             embedding_id = str(uuid.uuid4())
-        
+
         embedding = self.generate_embedding(text)
-        
+
         point = PointStruct(
             id=embedding_id,
             vector=embedding,
@@ -104,14 +111,14 @@ class EmbeddingService:
                 **metadata,
             },
         )
-        
+
         self.client.upsert(
             collection_name=self.collection_name,
             points=[point],
         )
-        
+
         return embedding_id
-    
+
     def search_similar(
         self,
         query: str,
@@ -120,17 +127,17 @@ class EmbeddingService:
     ) -> List[Dict[str, Any]]:
         """
         Search for similar texts using semantic similarity.
-        
+
         Args:
             query: Search query text
             limit: Maximum number of results
             filters: Optional filters for metadata
-            
+
         Returns:
             List of search results with scores and metadata
         """
         query_embedding = self.generate_embedding(query)
-        
+
         # Build Qdrant filter if provided
         qdrant_filter = None
         if filters:
@@ -144,14 +151,14 @@ class EmbeddingService:
                 )
             if conditions:
                 qdrant_filter = Filter(must=conditions)
-        
+
         results = self.client.search(
             collection_name=self.collection_name,
             query_vector=query_embedding,
             limit=limit,
             query_filter=qdrant_filter,
         )
-        
+
         return [
             {
                 "id": result.id,
@@ -160,14 +167,14 @@ class EmbeddingService:
             }
             for result in results
         ]
-    
+
     def delete_embedding(self, embedding_id: str) -> None:
         """Delete an embedding from Qdrant."""
         self.client.delete(
             collection_name=self.collection_name,
             points_selector=[embedding_id],
         )
-    
+
     def update_embedding(
         self,
         embedding_id: str,

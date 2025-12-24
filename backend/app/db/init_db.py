@@ -2,10 +2,8 @@
 Database initialization script.
 Creates all tables defined in models.
 """
-from sqlalchemy import text
-
 from app.db.session import engine, Base
-from app.models.models import (
+from app.models.models import (  # noqa: F401
     User,
     Book,
     LibraryItem,
@@ -46,7 +44,7 @@ def reset_db() -> None:
 
 if __name__ == "__main__":
     import sys
-    
+
     if len(sys.argv) > 1:
         command = sys.argv[1]
         if command == "init":

@@ -22,7 +22,7 @@ class UserResponse(UserBase):
     current_chamber: str
     is_active: bool
     created_at: datetime
-    
+
     class Config:
         from_attributes = True
 
@@ -48,7 +48,7 @@ class BookResponse(BookBase):
     elemental_energy: Dict[str, float] = {}
     correspondences: List[str] = []
     created_at: datetime
-    
+
     class Config:
         from_attributes = True
 
@@ -84,7 +84,7 @@ class LibraryItemResponse(BaseModel):
     reading_status: str
     added_at: datetime
     last_read_at: Optional[datetime] = None
-    
+
     class Config:
         from_attributes = True
 
@@ -105,7 +105,7 @@ class AnnotationResponse(BaseModel):
     highlight_text: Optional[str] = None
     created_at: datetime
     updated_at: datetime
-    
+
     class Config:
         from_attributes = True
 
@@ -126,7 +126,7 @@ class SynthesisResponse(BaseModel):
     model_used: str
     synthesis_type: str
     created_at: datetime
-    
+
     class Config:
         from_attributes = True
 

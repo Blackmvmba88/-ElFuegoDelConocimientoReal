@@ -16,14 +16,14 @@ async def analyze_text(request: SemanticAnalysisRequest):
     elemental energy, and correspondences.
     """
     analyzer = get_semantic_analyzer()
-    
+
     results = analyzer.analyze_text(
         text=request.text,
         analyze_symbols=request.analyze_symbols,
         analyze_energy=request.analyze_energy,
         analyze_correspondences=request.analyze_correspondences,
     )
-    
+
     return SemanticAnalysisResponse(**results)
 
 
@@ -33,7 +33,7 @@ async def list_symbols():
     List all known hermetic symbols in the database.
     """
     analyzer = get_semantic_analyzer()
-    
+
     return {
         "alchemical": list(analyzer.ALCHEMICAL_SYMBOLS.keys()),
         "masonic": list(analyzer.MASONIC_SYMBOLS.keys()),
@@ -47,8 +47,5 @@ async def list_elements():
     List elemental correspondences.
     """
     analyzer = get_semantic_analyzer()
-    
-    return {
-        element: keywords
-        for element, keywords in analyzer.ELEMENTAL_KEYWORDS.items()
-    }
+
+    return {element: keywords for element, keywords in analyzer.ELEMENTAL_KEYWORDS.items()}
