@@ -64,7 +64,7 @@ export function useBookSearch() {
   const { data, loading, error, execute } = useApi<ApiTypes.SearchResponse>();
 
   const searchBooks = useCallback(
-    async (query: string, filters?: Record<string, any>) => {
+    async (query: string, filters?: Record<string, unknown>) => {
       return execute(() => apiClient.search.searchBooks(query, filters));
     },
     [execute]
@@ -140,7 +140,7 @@ export function useStateSync(userId: number) {
   );
 
   const updateState = useCallback(
-    async (stateUpdates: Record<string, any>) => {
+    async (stateUpdates: Record<string, unknown>) => {
       if (!sessionToken) return { error: 'No session token' };
       return execute(() =>
         apiClient.stateSync.updateState(sessionToken, stateUpdates)
@@ -150,7 +150,7 @@ export function useStateSync(userId: number) {
   );
 
   const syncAcrossDevices = useCallback(
-    async (stateUpdates: Record<string, any>) => {
+    async (stateUpdates: Record<string, unknown>) => {
       if (!sessionToken) return { error: 'No session token' };
       return execute(() =>
         apiClient.stateSync.syncAcrossDevices(sessionToken, stateUpdates)
@@ -160,7 +160,7 @@ export function useStateSync(userId: number) {
   );
 
   const recordEvent = useCallback(
-    async (eventType: string, eventData: Record<string, any>) => {
+    async (eventType: string, eventData: Record<string, unknown>) => {
       if (!sessionToken) return { error: 'No session token' };
       return execute(() =>
         apiClient.stateSync.recordEvent(sessionToken, eventType, eventData)

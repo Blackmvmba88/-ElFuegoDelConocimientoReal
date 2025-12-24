@@ -14,7 +14,7 @@ export default function TextSynthesizer() {
   const [style, setStyle] = useState<StyleType>('alchemical');
   const [transformationType, setTransformationType] = useState<TransformationType>('modernize');
   
-  const { result, loading, error, generateText, transformText, synthesize } = useTextSynthesis();
+  const { result, loading, error, generateText, transformText } = useTextSynthesis();
 
   const handleGenerate = async () => {
     if (theme.trim()) {
