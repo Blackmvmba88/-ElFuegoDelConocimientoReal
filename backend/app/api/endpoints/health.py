@@ -36,14 +36,18 @@ async def health_check(db=Depends(get_db)):
     # Check Qdrant
     try:
         embedding_service = get_embedding_service()
-        embedding_service.client.get_collections()
-        qdrant_status = "healthy"
+        embedding_service._initialize()
+        if embedding_service.client:
+            embedding_service.client.get_collections()
+            qdrant_status = "healthy"
+        else:
+            qdrant_status = "unavailable"
     except Exception as e:
         qdrant_status = f"unhealthy: {str(e)}"
     
     # Overall status
-    overall_status = "healthy" if all(
-        s == "healthy" for s in [db_status, redis_status, qdrant_status]
+    overall_status = "healthy" if (
+        db_status == "healthy" and redis_status == "healthy"
     ) else "degraded"
     
     return HealthResponse(

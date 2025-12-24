@@ -7,7 +7,7 @@ from contextlib import asynccontextmanager
 
 from app.core.config import settings
 from app.db.redis import close_redis_client
-from app.api.endpoints import health, search, semantic, synthesis, state_sync
+from app.api.endpoints import health, search, semantic, synthesis, state_sync, ingest
 
 
 @asynccontextmanager
@@ -51,6 +51,7 @@ app.include_router(search.router, prefix="/api/search", tags=["search"])
 app.include_router(semantic.router, prefix="/api/semantic", tags=["semantic"])
 app.include_router(synthesis.router, prefix="/api/synthesis", tags=["synthesis"])
 app.include_router(state_sync.router, prefix="/api/sync", tags=["state-sync"])
+app.include_router(ingest.router, prefix="/api/ingest", tags=["ingest"])
 
 
 @app.get("/")
