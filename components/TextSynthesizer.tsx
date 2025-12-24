@@ -14,7 +14,7 @@ export default function TextSynthesizer() {
   const [style, setStyle] = useState<StyleType>('alchemical');
   const [transformationType, setTransformationType] = useState<TransformationType>('modernize');
   
-  const { result, loading, error, generateText, transformText, synthesize } = useTextSynthesis();
+  const { result, loading, error, generateText, transformText } = useTextSynthesis();
 
   const handleGenerate = async () => {
     if (theme.trim()) {
@@ -217,14 +217,16 @@ export default function TextSynthesizer() {
             <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-900/50 
                           border border-slate-200 dark:border-slate-700">
               <p className="text-slate-900 dark:text-slate-100 whitespace-pre-wrap leading-relaxed">
-                {result.content || result.transformed || result.original}
+                {'content' in result ? result.content : 'transformed' in result ? result.transformed : ''}
               </p>
             </div>
           </div>
           
           <div className="mt-4 flex gap-2">
             <button
-              onClick={() => navigator.clipboard.writeText(result.content || result.transformed)}
+              onClick={() => navigator.clipboard.writeText(
+                'content' in result ? result.content : 'transformed' in result ? result.transformed : ''
+              )}
               className="px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 
                        hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors"
             >
@@ -232,7 +234,7 @@ export default function TextSynthesizer() {
             </button>
             <button
               onClick={() => {
-                setText(result.content || result.transformed);
+                setText('content' in result ? result.content : 'transformed' in result ? result.transformed : '');
                 setMode('transform');
               }}
               className="px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-700 

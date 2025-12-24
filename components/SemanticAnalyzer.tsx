@@ -93,7 +93,7 @@ Ejemplo: 'El alquimista buscó la piedra filosofal, combinando mercurio, azufre 
                 🔮 Símbolos Herméticos Detectados
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {analysis.hermetic_symbols.map((symbol: any, idx: number) => (
+                {analysis.hermetic_symbols.map((symbol, idx) => (
                   <div
                     key={idx}
                     className="p-4 rounded-lg border border-slate-200 dark:border-slate-700
@@ -161,7 +161,7 @@ Ejemplo: 'El alquimista buscó la piedra filosofal, combinando mercurio, azufre 
                 🔗 Correspondencias Herméticas
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {analysis.correspondences.map((corr: any, idx: number) => (
+                {analysis.correspondences.map((corr, idx) => (
                   <div
                     key={idx}
                     className="p-4 rounded-lg border border-slate-200 dark:border-slate-700

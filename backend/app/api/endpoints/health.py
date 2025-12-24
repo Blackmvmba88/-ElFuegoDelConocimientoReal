@@ -24,7 +24,7 @@ async def health_check(db=Depends(get_db)):
         db_status = "healthy"
     except Exception as e:
         db_status = f"unhealthy: {str(e)}"
-    
+
     # Check Redis
     try:
         redis = await get_redis_client()
@@ -32,7 +32,7 @@ async def health_check(db=Depends(get_db)):
         redis_status = "healthy"
     except Exception as e:
         redis_status = f"unhealthy: {str(e)}"
-    
+
     # Check Qdrant
     try:
         embedding_service = get_embedding_service()
@@ -44,12 +44,12 @@ async def health_check(db=Depends(get_db)):
             qdrant_status = "unavailable"
     except Exception as e:
         qdrant_status = f"unhealthy: {str(e)}"
-    
+
     # Overall status
-    overall_status = "healthy" if (
-        db_status == "healthy" and redis_status == "healthy"
-    ) else "degraded"
-    
+    overall_status = (
+        "healthy" if (db_status == "healthy" and redis_status == "healthy") else "degraded"
+    )
+
     return HealthResponse(
         status=overall_status,
         version=settings.app_version,
@@ -66,6 +66,4 @@ async def metrics():
     Prometheus-compatible metrics endpoint.
     """
     # TODO: Implement actual metrics collection
-    return {
-        "message": "Metrics endpoint - to be implemented with prometheus_client"
-    }
+    return {"message": "Metrics endpoint - to be implemented with prometheus_client"}

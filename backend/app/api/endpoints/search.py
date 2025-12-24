@@ -2,7 +2,6 @@
 Search endpoints for semantic and filtered book search.
 """
 from fastapi import APIRouter, Depends, Query
-from typing import Optional, List
 from sqlalchemy.orm import Session
 
 from app.schemas.schemas import SearchRequest, SearchResponse, BookResponse
@@ -22,26 +21,24 @@ async def search_books(
     Semantic search for books using vector embeddings.
     """
     embedding_service = get_embedding_service()
-    
+
     # Perform semantic search
     search_results = embedding_service.search_similar(
         query=request.query,
         limit=request.limit,
         filters=request.filters,
     )
-    
+
     # Get book details from database
     book_ids = [result["metadata"].get("book_id") for result in search_results]
     books = db.query(Book).filter(Book.id.in_(book_ids)).all()
-    
+
     # Create response maintaining search order
     book_map = {book.id: book for book in books}
     ordered_books = [
-        BookResponse.from_orm(book_map[book_id])
-        for book_id in book_ids
-        if book_id in book_map
+        BookResponse.from_orm(book_map[book_id]) for book_id in book_ids if book_id in book_map
     ]
-    
+
     return SearchResponse(
         results=ordered_books,
         total=len(ordered_books),
@@ -75,10 +72,10 @@ async def get_search_filters(db: Session = Depends(get_db)):
     # Get unique values for filters
     authors = db.query(Book.author).distinct().limit(100).all()
     languages = db.query(Book.language).distinct().all()
-    
+
     return {
         "authors": [a[0] for a in authors if a[0]],
-        "languages": [l[0] for l in languages if l[0]],
+        "languages": [lang[0] for lang in languages if lang[0]],
         "elements": ["fire", "water", "air", "earth", "ether"],
         "symbols": ["alchemical", "masonic", "kabbalistic"],
     }

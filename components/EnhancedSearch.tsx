@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useBookSearch } from '@/lib/use-api';
 
-interface SearchFilters {
+interface SearchFilters extends Record<string, unknown> {
   author?: string;
   language?: string;
   element?: string;
@@ -153,11 +153,11 @@ export default function EnhancedSearch() {
       {results && (
         <div className="space-y-4">
           <div className="text-sm text-slate-600 dark:text-slate-400">
-            {results.total} resultados encontrados para "{results.query}"
+            {results.total} resultados encontrados para &ldquo;{results.query}&rdquo;
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {results.results.map((book: any) => (
+            {results.results.map((book) => (
               <div
                 key={book.id}
                 className="p-4 rounded-lg border-2 border-amber-200 dark:border-amber-900
@@ -196,7 +196,7 @@ export default function EnhancedSearch() {
                   {book.elemental_energy && Object.keys(book.elemental_energy).length > 0 && (
                     <div className="flex gap-1 text-xs">
                       {Object.entries(book.elemental_energy)
-                        .filter(([_, value]) => (value as number) > 0.2)
+                        .filter(([, value]) => (value as number) > 0.2)
                         .map(([element, value]) => (
                           <span
                             key={element}

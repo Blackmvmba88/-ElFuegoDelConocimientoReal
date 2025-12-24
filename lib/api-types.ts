@@ -106,7 +106,7 @@ export interface Session {
   device_info: string;
   created_at: string;
   last_activity: string;
-  state: Record<string, any>;
+  state: Record<string, unknown>;
 }
 
 export interface SessionResponse {
@@ -125,7 +125,7 @@ export interface SyncResponse {
 
 export interface Event {
   type: string;
-  data: Record<string, any>;
+  data: Record<string, unknown>;
   timestamp: string;
 }
 

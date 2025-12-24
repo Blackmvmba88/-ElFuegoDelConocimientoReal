@@ -46,7 +46,7 @@ export const health = {
 
 // Search API
 export const search = {
-  searchBooks: async (query: string, filters?: Record<string, any>, limit = 20) =>
+  searchBooks: async (query: string, filters?: Record<string, unknown>, limit = 20) =>
     fetchApi<ApiTypes.SearchResponse>('/api/search/search', {
       method: 'POST',
       body: JSON.stringify({ query, filters, limit }),
@@ -129,13 +129,13 @@ export const stateSync = {
   getSession: async (sessionToken: string) =>
     fetchApi<ApiTypes.Session>(`/api/sync/sessions/${sessionToken}`),
   
-  updateState: async (sessionToken: string, stateUpdates: Record<string, any>) =>
+  updateState: async (sessionToken: string, stateUpdates: Record<string, unknown>) =>
     fetchApi<ApiTypes.SessionStateResponse>(`/api/sync/sessions/${sessionToken}/state`, {
       method: 'PUT',
       body: JSON.stringify(stateUpdates),
     }),
   
-  syncAcrossDevices: async (sessionToken: string, stateUpdates: Record<string, any>) =>
+  syncAcrossDevices: async (sessionToken: string, stateUpdates: Record<string, unknown>) =>
     fetchApi<ApiTypes.SyncResponse>(`/api/sync/sessions/${sessionToken}/sync`, {
       method: 'POST',
       body: JSON.stringify(stateUpdates),
@@ -149,7 +149,7 @@ export const stateSync = {
   recordEvent: async (
     sessionToken: string,
     eventType: string,
-    eventData: Record<string, any>
+    eventData: Record<string, unknown>
   ) =>
     fetchApi<ApiTypes.SessionStateResponse>(`/api/sync/sessions/${sessionToken}/events`, {
       method: 'POST',
@@ -165,10 +165,13 @@ export const stateSync = {
     fetchApi<ApiTypes.UserSessionsResponse>(`/api/sync/users/${userId}/sessions`),
 };
 
-export default {
+// Export as named exports for better tree-shaking and explicit imports
+const apiClient = {
   health,
   search,
   semantic,
   synthesis,
   stateSync,
 };
+
+export default apiClient;
