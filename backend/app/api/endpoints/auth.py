@@ -104,16 +104,16 @@ async def github_auth(
                 elif emails:
                     email = emails[0]["email"]
         
-        # If still no email, use a placeholder
+        # If still no email, create a unique placeholder
         if not email:
-            email = f"{github_user['login']}@github.user"
+            email = f"{github_user['login']}+noreply@users.noreply.github.com"
     
     github_id = str(github_user["id"])
     github_username = github_user["login"]
     avatar_url = github_user.get("avatar_url")
     
     # Step 4: Create or update user in database
-    user = db.query(User).filter(User.github_id == github_id).first()
+    user = db.query(User).filter(User.github_id == int(github_id)).first()
     
     if not user:
         # Check if user exists with this email
@@ -121,7 +121,7 @@ async def github_auth(
         
         if user:
             # Update existing user with GitHub info
-            user.github_id = github_id
+            user.github_id = int(github_id)
             user.github_username = github_username
             user.avatar_url = avatar_url
         else:
@@ -129,7 +129,7 @@ async def github_auth(
             user = User(
                 email=email,
                 username=github_username,
-                github_id=github_id,
+                github_id=int(github_id),
                 github_username=github_username,
                 avatar_url=avatar_url,
                 is_creator=(github_username.lower() == settings.creator_github_username.lower()),

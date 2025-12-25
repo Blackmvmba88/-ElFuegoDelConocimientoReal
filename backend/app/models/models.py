@@ -2,7 +2,7 @@
 SQLAlchemy models for the application.
 """
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ForeignKey, JSON, Float
+from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ForeignKey, JSON, Float, BigInteger
 from sqlalchemy.orm import relationship
 
 from app.db.session import Base
@@ -19,7 +19,7 @@ class User(Base):
     hashed_password = Column(String, nullable=True)  # Nullable for OAuth users
     
     # GitHub OAuth fields
-    github_id = Column(String, unique=True, index=True, nullable=True)
+    github_id = Column(BigInteger, unique=True, index=True, nullable=True)
     github_username = Column(String, index=True, nullable=True)
     avatar_url = Column(String, nullable=True)
     

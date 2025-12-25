@@ -14,13 +14,13 @@ export function useAuth() {
   const user = session?.user
 
   // Helper to check if current user is the creator
-  const isCreator = Boolean((user as any)?.isCreator)
+  const isCreator = Boolean(user?.isCreator)
 
   // Helper to check if current user is an admin
-  const isAdmin = Boolean((user as any)?.isAdmin)
+  const isAdmin = Boolean(user?.isAdmin)
 
   // Get the access token for backend API calls
-  const accessToken = (user as any)?.accessToken
+  const accessToken = user?.accessToken
 
   // Helper to get auth headers for API calls
   const getAuthHeaders = () => {

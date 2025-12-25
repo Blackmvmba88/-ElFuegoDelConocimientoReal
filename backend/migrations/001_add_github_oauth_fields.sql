@@ -3,7 +3,7 @@
 -- Description: Adds GitHub OAuth authentication fields and role management to the users table
 
 -- Add GitHub OAuth fields
-ALTER TABLE users ADD COLUMN IF NOT EXISTS github_id VARCHAR UNIQUE;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS github_id BIGINT UNIQUE;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS github_username VARCHAR;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS avatar_url VARCHAR;
 
@@ -21,7 +21,7 @@ CREATE INDEX IF NOT EXISTS idx_users_is_creator ON users(is_creator);
 CREATE INDEX IF NOT EXISTS idx_users_is_admin ON users(is_admin);
 
 -- Comments for documentation
-COMMENT ON COLUMN users.github_id IS 'GitHub user ID for OAuth authentication';
+COMMENT ON COLUMN users.github_id IS 'GitHub user ID (BigInt) for OAuth authentication';
 COMMENT ON COLUMN users.github_username IS 'GitHub username';
 COMMENT ON COLUMN users.avatar_url IS 'User avatar URL from GitHub';
 COMMENT ON COLUMN users.is_creator IS 'True if user is the project creator (configured in CREATOR_GITHUB_USERNAME)';

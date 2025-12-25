@@ -14,10 +14,9 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account, profile }) {
-      // On initial sign in
-      if (account && profile) {
-        // Exchange GitHub token with backend
+    async signIn({ user, account, profile }) {
+      // Exchange GitHub profile with backend
+      if (account?.provider === 'github' && profile) {
         const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
         
         try {
@@ -34,12 +33,44 @@ export const authOptions: NextAuthOptions = {
 
           if (response.ok) {
             const data = await response.json()
-            token.accessToken = data.access_token
-            token.githubId = profile.id
-            token.githubUsername = (profile as any).login
+            // Store backend token in user object for later use
+            user.accessToken = data.access_token
           }
         } catch (error) {
           console.error('Error exchanging token with backend:', error)
+        }
+      }
+      
+      return true
+    },
+    async jwt({ token, user, account, profile }) {
+      // On initial sign in, store user data
+      if (user) {
+        token.accessToken = (user as any).accessToken
+      }
+      
+      if (profile) {
+        token.githubId = profile.id
+        token.githubUsername = (profile as any).login
+      }
+
+      // Fetch user info from backend to get roles
+      if (token.accessToken) {
+        try {
+          const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+          const response = await fetch(`${backendUrl}/api/auth/me`, {
+            headers: {
+              'Authorization': `Bearer ${token.accessToken}`,
+            },
+          })
+
+          if (response.ok) {
+            const userData = await response.json()
+            token.isCreator = userData.is_creator
+            token.isAdmin = userData.is_admin
+          }
+        } catch (error) {
+          console.error('Error fetching user info:', error)
         }
       }
       
@@ -48,9 +79,11 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       // Add custom fields to session
       if (session.user) {
-        (session.user as any).accessToken = token.accessToken
-        (session.user as any).githubId = token.githubId
-        (session.user as any).githubUsername = token.githubUsername
+        session.user.accessToken = token.accessToken as string
+        session.user.githubId = token.githubId as string
+        session.user.githubUsername = token.githubUsername as string
+        session.user.isCreator = token.isCreator as boolean
+        session.user.isAdmin = token.isAdmin as boolean
       }
       
       return session

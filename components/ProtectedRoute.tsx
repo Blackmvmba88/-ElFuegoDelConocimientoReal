@@ -49,7 +49,7 @@ export function ProtectedRoute({
     redirect(fallbackUrl)
   }
 
-  if (requireCreator && !(session.user as any)?.isCreator) {
+  if (requireCreator && !session.user?.isCreator) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="max-w-md w-full p-8 bg-gray-800/50 backdrop-blur-lg rounded-2xl border border-red-800/30">

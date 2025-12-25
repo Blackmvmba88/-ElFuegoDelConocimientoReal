@@ -58,9 +58,9 @@ export function Navigation() {
                         />
                       )}
                       <span className="text-sm text-gray-300">
-                        {session.user?.name || (session.user as any)?.githubUsername}
+                        {session.user?.name || session.user?.githubUsername}
                       </span>
-                      {(session.user as any)?.isCreator && (
+                      {session.user?.isCreator && (
                         <span className="text-xs bg-flame-600 text-white px-2 py-0.5 rounded-full">
                           Creador
                         </span>
