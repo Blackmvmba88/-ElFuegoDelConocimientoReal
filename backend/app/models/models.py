@@ -16,7 +16,16 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True, index=True, nullable=False)
     username = Column(String, unique=True, index=True, nullable=False)
-    hashed_password = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=True)  # Nullable for OAuth users
+    
+    # GitHub OAuth fields
+    github_id = Column(String, unique=True, index=True, nullable=True)
+    github_username = Column(String, index=True, nullable=True)
+    avatar_url = Column(String, nullable=True)
+    
+    # Role management
+    is_creator = Column(Boolean, default=False)  # True for the project creator
+    is_admin = Column(Boolean, default=False)
 
     # Masonic degree progression
     current_degree = Column(Integer, default=1)

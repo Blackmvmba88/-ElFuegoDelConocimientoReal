@@ -58,6 +58,20 @@ class Settings(BaseSettings):
     )
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 60 * 24 * 7  # 7 days
+    
+    # GitHub OAuth
+    github_client_id: Optional[str] = Field(default=None, env="GITHUB_CLIENT_ID")
+    github_client_secret: Optional[str] = Field(default=None, env="GITHUB_CLIENT_SECRET")
+    github_redirect_uri: str = Field(
+        default="http://localhost:3000/api/auth/callback/github", 
+        env="GITHUB_REDIRECT_URI"
+    )
+    
+    # Creator identification
+    creator_github_username: str = Field(
+        default="Blackmvmba88", 
+        env="CREATOR_GITHUB_USERNAME"
+    )
 
     # Monitoring
     enable_prometheus: bool = Field(default=True, env="ENABLE_PROMETHEUS")

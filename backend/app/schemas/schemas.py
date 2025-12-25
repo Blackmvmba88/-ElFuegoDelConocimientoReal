@@ -21,10 +21,38 @@ class UserResponse(UserBase):
     current_degree: int
     current_chamber: str
     is_active: bool
+    is_creator: bool
+    is_admin: bool
+    github_username: Optional[str] = None
+    avatar_url: Optional[str] = None
     created_at: datetime
 
     class Config:
         from_attributes = True
+
+
+# Auth schemas
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+
+
+class TokenData(BaseModel):
+    user_id: Optional[int] = None
+    username: Optional[str] = None
+
+
+class GitHubAuthRequest(BaseModel):
+    code: str
+    redirect_uri: str
+
+
+class GitHubUserInfo(BaseModel):
+    id: int
+    login: str
+    email: Optional[str] = None
+    avatar_url: Optional[str] = None
+    name: Optional[str] = None
 
 
 # Book schemas
