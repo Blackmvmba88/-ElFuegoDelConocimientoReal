@@ -47,11 +47,31 @@ El usuario recorre niveles de iniciación digital desbloqueando lecciones, fragm
 # Instalar dependencias
 npm install
 
+# Configurar variables de entorno (ver Autenticación)
+cp .env.example .env.local
+
 # Ejecutar servidor de desarrollo
 npm run dev
 
 # Abrir http://localhost:3000 en tu navegador
 ```
+
+### 🔐 Autenticación con GitHub
+
+El proyecto incluye un sistema robusto de autenticación mediante GitHub OAuth. Para configurarlo:
+
+1. **Crear una GitHub OAuth App**: Sigue la [Guía de Configuración](./docs/GITHUB_AUTH_SETUP.md)
+2. **Configurar variables de entorno**: Copia `.env.example` a `.env.local` y completa con tus credenciales
+3. **El creador del proyecto** (configurado en `CREATOR_GITHUB_USERNAME`) obtiene automáticamente privilegios especiales
+
+**Características:**
+- 🔑 Autenticación segura con GitHub OAuth
+- 👤 Gestión de usuarios y roles (Creator, Admin, User)
+- 🎯 Identificación automática del creador del proyecto
+- 🔒 Protección de rutas en backend y frontend
+- 💾 Sesiones persistentes (7 días)
+
+Ver documentación completa: [GITHUB_AUTH_SETUP.md](./docs/GITHUB_AUTH_SETUP.md)
 
 Para instrucciones detalladas de configuración, ver [SETUP.md](./SETUP.md)
 
