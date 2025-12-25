@@ -7,7 +7,7 @@ from contextlib import asynccontextmanager
 
 from app.core.config import settings
 from app.db.redis import close_redis_client
-from app.api.endpoints import health, search, semantic, synthesis, state_sync, ingest
+from app.api.endpoints import health, search, semantic, synthesis, state_sync, ingest, auth
 
 
 @asynccontextmanager
@@ -47,6 +47,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(health.router, tags=["health"])
+app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(search.router, prefix="/api/search", tags=["search"])
 app.include_router(semantic.router, prefix="/api/semantic", tags=["semantic"])
 app.include_router(synthesis.router, prefix="/api/synthesis", tags=["synthesis"])
