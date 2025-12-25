@@ -34,7 +34,8 @@ export const authOptions: NextAuthOptions = {
           if (response.ok) {
             const data = await response.json()
             // Store backend token in user object for later use
-            user.accessToken = data.access_token
+            // Type assertion is safe here as we're adding a custom property
+            (user as any).accessToken = data.access_token
           }
         } catch (error) {
           console.error('Error exchanging token with backend:', error)
@@ -46,11 +47,13 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user, account, profile }) {
       // On initial sign in, store user data
       if (user) {
+        // Type assertion is safe here as we added this in signIn
         token.accessToken = (user as any).accessToken
       }
       
       if (profile) {
         token.githubId = profile.id
+        // GitHub profile includes login property
         token.githubUsername = (profile as any).login
       }
 
