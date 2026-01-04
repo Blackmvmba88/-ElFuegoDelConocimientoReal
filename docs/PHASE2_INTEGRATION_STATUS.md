@@ -115,7 +115,7 @@ Frontend will be available at: http://localhost:3000
 
 **What it does:**
 - **Generate**: Creates original hermetic texts on any theme
-- **Transform**: Changes text style while preserving meaning
+- **Transform**: Changes text style while preserving meaning (5 modes: modernize, archaize, simplify, amplify, poetize)
 - **Fuse**: Combines multiple texts into coherent synthesis
 
 **Styles available:**
