@@ -156,8 +156,7 @@ class SynthesisEngine:
         """
         transformations = {
             "modernize": (
-                "Rewrite this hermetic text in modern language "
-                "while preserving its meaning"
+                "Rewrite this hermetic text in modern language " "while preserving its meaning"
             ),
             "archaize": "Transform this text into archaic hermetic language",
             "simplify": "Simplify this hermetic text for easier understanding",
@@ -198,9 +197,7 @@ class SynthesisEngine:
             "alchemical": (
                 "Write in the style of alchemical texts, using symbols of transformation"
             ),
-            "masonic": (
-                "Write in the style of masonic wisdom, emphasizing building and structure"
-            ),
+            "masonic": ("Write in the style of masonic wisdom, emphasizing building and structure"),
             "kabbalistic": (
                 "Write in the style of kabbalistic mysticism, exploring divine emanations"
             ),

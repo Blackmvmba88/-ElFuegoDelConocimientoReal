@@ -56,7 +56,6 @@ export default function ChambersPage() {
             onClick={() => {
               // Navigation to chamber detail page (to be implemented in Fase 2)
               if (chamber.unlocked) {
-                console.log('Chamber clicked:', chamber.name);
                 // TODO: Navigate to /chambers/[id] when detail pages are implemented
               }
             }}
