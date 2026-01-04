@@ -25,34 +25,34 @@ def get_password_hash(password: str) -> str:
 def create_access_token(data: Dict[str, Any], expires_delta: Optional[timedelta] = None) -> str:
     """
     Create a JWT access token.
-    
+
     Args:
         data: Data to encode in the token (typically user_id, username)
         expires_delta: Optional custom expiration time
-    
+
     Returns:
         Encoded JWT token string
     """
     to_encode = data.copy()
-    
+
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
     else:
         expire = datetime.utcnow() + timedelta(minutes=settings.access_token_expire_minutes)
-    
+
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, settings.secret_key, algorithm=settings.algorithm)
-    
+
     return encoded_jwt
 
 
 def decode_access_token(token: str) -> Optional[Dict[str, Any]]:
     """
     Decode and validate a JWT access token.
-    
+
     Args:
         token: JWT token string
-    
+
     Returns:
         Decoded token payload or None if invalid
     """
@@ -66,19 +66,19 @@ def decode_access_token(token: str) -> Optional[Dict[str, Any]]:
 def is_token_expired(token: str) -> bool:
     """
     Check if a token is expired.
-    
+
     Args:
         token: JWT token string
-    
+
     Returns:
         True if expired, False otherwise
     """
     payload = decode_access_token(token)
     if not payload:
         return True
-    
+
     exp = payload.get("exp")
     if not exp:
         return True
-    
+
     return datetime.fromtimestamp(exp) < datetime.utcnow()
