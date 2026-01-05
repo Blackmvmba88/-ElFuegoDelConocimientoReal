@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { CamaraDeGrados } from '@/components/CamaraDeGrados'
 import { ForjaDeTextos } from '@/components/ForjaDeTextos'
 import { BibliotecaViva } from '@/components/BibliotecaViva'
@@ -32,6 +33,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Phase 2 Banner */}
+      <section className="mb-12 p-8 rounded-xl bg-gradient-to-r from-amber-500/20 to-flame-500/20 border-2 border-amber-500/50">
+        <div className="text-center">
+          <div className="inline-block px-4 py-2 bg-amber-500 text-black rounded-full text-sm font-bold mb-4">
+            ✨ FASE 2: FUEGO OPERATIVO - DISPONIBLE
+          </div>
+          <h2 className="text-2xl font-bold text-amber-400 mb-4">
+            IA Hermética e Análisis Semántico Integrados
+          </h2>
+          <p className="text-gray-300 max-w-3xl mx-auto mb-6">
+            Explora textos con análisis semántico profundo, detecta símbolos alquímicos, masónicos y cabalísticos,
+            y crea nuevo conocimiento con síntesis impulsada por IA.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link href="/analyzer" className="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-black rounded-lg font-semibold transition-colors">
+              🔮 Analizador Semántico
+            </Link>
+            <Link href="/forge" className="px-6 py-3 bg-flame-600 hover:bg-flame-700 text-white rounded-lg font-semibold transition-colors">
+              ⚒️ Forja de Textos
+            </Link>
+            <Link href="/library" className="px-6 py-3 bg-hermetic-600 hover:bg-hermetic-700 text-white rounded-lg font-semibold transition-colors">
+              📚 Búsqueda Inteligente
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Quick Access Cards */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <button
@@ -43,23 +71,24 @@ export default function Home() {
           <p className="text-sm text-gray-400">Acceso por iniciación digital</p>
         </button>
 
-        <button
-          onClick={() => setActiveSection('forja')}
+        <Link
+          href="/forge"
           className="group p-6 rounded-lg bg-gradient-to-br from-mystic-900/50 to-mystic-800/30 border border-mystic-700/50 hover:border-mystic-500 transition-all duration-300 hover:shadow-lg hover:shadow-mystic-500/20"
         >
           <div className="text-4xl mb-3">⚒️</div>
           <h3 className="text-xl font-bold text-mystic-400 mb-2">Forja de Textos</h3>
           <p className="text-sm text-gray-400">Crear y reescribir conocimiento</p>
-        </button>
+          <span className="text-xs bg-amber-500 text-black px-2 py-1 rounded-full mt-2 inline-block">FASE 2</span>
+        </Link>
 
-        <button
-          onClick={() => setActiveSection('biblioteca')}
+        <Link
+          href="/library"
           className="group p-6 rounded-lg bg-gradient-to-br from-hermetic-900/50 to-hermetic-800/30 border border-hermetic-700/50 hover:border-hermetic-500 transition-all duration-300 hover:shadow-lg hover:shadow-hermetic-500/20"
         >
           <div className="text-4xl mb-3">📚</div>
           <h3 className="text-xl font-bold text-hermetic-400 mb-2">Biblioteca Viva</h3>
           <p className="text-sm text-gray-400">Búsqueda y lectura de obras</p>
-        </button>
+        </Link>
 
         <button
           onClick={() => setActiveSection('llama')}

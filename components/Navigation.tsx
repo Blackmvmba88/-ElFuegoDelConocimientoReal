@@ -4,6 +4,7 @@ import { useTheme } from './ThemeProvider'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function Navigation() {
   const { theme, toggleTheme } = useTheme()
@@ -18,13 +19,31 @@ export function Navigation() {
     <nav className="border-b border-flame-800/30 bg-gray-900/50 backdrop-blur-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <span className="text-3xl">🔥</span>
-            <div>
-              <h1 className="text-xl font-bold text-flame-400 flame-glow">
-                El Fuego del Conocimiento Real
-              </h1>
-              <p className="text-xs text-gray-400">Grado 33 - Constructor del Universo Interior</p>
+          <div className="flex items-center space-x-8">
+            <Link href="/" className="flex items-center space-x-3">
+              <span className="text-3xl">🔥</span>
+              <div>
+                <h1 className="text-xl font-bold text-flame-400 flame-glow">
+                  El Fuego del Conocimiento Real
+                </h1>
+                <p className="text-xs text-gray-400">Grado 33 - Constructor del Universo Interior</p>
+              </div>
+            </Link>
+            
+            {/* Navigation Links */}
+            <div className="hidden md:flex items-center gap-6">
+              <Link href="/library" className="text-sm text-gray-300 hover:text-flame-400 transition-colors">
+                📚 Biblioteca
+              </Link>
+              <Link href="/analyzer" className="text-sm text-gray-300 hover:text-flame-400 transition-colors">
+                🔮 Analizador
+              </Link>
+              <Link href="/forge" className="text-sm text-gray-300 hover:text-flame-400 transition-colors">
+                ⚒️ Forja
+              </Link>
+              <Link href="/chambers" className="text-sm text-gray-300 hover:text-flame-400 transition-colors">
+                🏛️ Cámaras
+              </Link>
             </div>
           </div>
           
