@@ -5,8 +5,6 @@ import {
   CATALOG_CATEGORIES, 
   COMPLETE_CATALOG, 
   getBooksByCategory, 
-  getBooksByDegree,
-  getEssentialBooks,
   searchBooks,
   getCatalogStats,
   type BookCategory,
