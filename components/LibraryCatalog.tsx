@@ -254,7 +254,7 @@ function BookCard({ book }: { book: CatalogBook }) {
         
         <div className="flex items-center space-x-2">
           <span className="text-muted-foreground">📖 Idioma:</span>
-          <span className="font-medium">{book.language === 'none' ? 'Sin texto' : book.language}</span>
+          <span className="font-medium">{book.language === 'visual' ? 'Visual (sin texto)' : book.language}</span>
         </div>
 
         <div className="flex items-center space-x-2">

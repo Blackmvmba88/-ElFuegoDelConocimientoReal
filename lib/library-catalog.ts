@@ -171,7 +171,7 @@ export const HERMETICISM_ALCHEMY_BOOKS: CatalogBook[] = [
     year: 1677,
     category: 'hermeticism-alchemy',
     description: 'El libro mudo: obra alquímica sin palabras, solo imágenes simbólicas de la Gran Obra.',
-    language: 'none',
+    language: 'visual',
     publicDomain: true,
     sources: [
       { name: 'archive', url: 'https://archive.org/details/mutusliber00altu' },
