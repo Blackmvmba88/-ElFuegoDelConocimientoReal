@@ -32,6 +32,9 @@ export function Navigation() {
             
             {/* Navigation Links */}
             <div className="hidden md:flex items-center gap-6">
+              <Link href="/catalog" className="text-sm text-gray-300 hover:text-flame-400 transition-colors">
+                📖 Catálogo
+              </Link>
               <Link href="/library" className="text-sm text-gray-300 hover:text-flame-400 transition-colors">
                 📚 Biblioteca
               </Link>
