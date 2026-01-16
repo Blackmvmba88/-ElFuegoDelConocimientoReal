@@ -142,6 +142,7 @@ Para instrucciones detalladas de configuración, ver [SETUP.md](./SETUP.md)
 #### Componentes Principales:
 
 - 🏛️ **Cámara de Grados:** Sistema de 33 grados masónicos
+- 📖 **Catálogo Hermético:** 55+ textos fundamentales en 5 tradiciones (Hermetismo, Masonería, Sapiencial, Física, Lenguaje)
 - 📚 **Biblioteca Viva:** Búsqueda y lectura de obras
 - ✍️ **Forja de Textos:** Creación y reescritura de conocimiento
 - 🔥 **Llama Trina:** Visualizador energético animado (Three.js)
@@ -153,6 +154,7 @@ Para instrucciones detalladas de configuración, ver [SETUP.md](./SETUP.md)
 - **Base de Datos:** PostgreSQL + Redis (caché semántica) *[Fase 2 - ✅ Completado]*
 - **Indexación IA:** Embeddings con Qdrant o FAISS *[Fase 2 - ✅ Completado]*
 - **Integración:** Gutenberg, Archive.org, PDF locales *[Fase 2-3]*
+- **Catálogo Hermético:** 55+ textos fundamentales curados en 5 tradiciones *[Fase 3 - ✅ Completado]*
 
 ### 🔸 IA Hermética (Quantum Forge) - Implementado
 
@@ -282,6 +284,7 @@ Usa las [plantillas de issues](./.github/ISSUE_TEMPLATE/) para reportar bugs o s
 
 - 📖 [SETUP.md](./SETUP.md) - Guía completa de configuración
 - 🗺️ [ROADMAP.md](./ROADMAP.md) - Roadmap detallado con milestones
+- 📚 [docs/LIBRARY_CATALOG.md](./docs/LIBRARY_CATALOG.md) - **Catálogo Hermético Completo** (55+ textos fundamentales)
 - 🏛️ [docs/architecture.md](./docs/architecture.md) - Arquitectura del sistema y separación de responsabilidades
 - 🔄 [docs/sync-strategy.md](./docs/sync-strategy.md) - Sistema de sincronización y coordinación de estado
 - 🧪 [docs/testing-strategy.md](./docs/testing-strategy.md) - Estrategia de testing (tests que importan)
