@@ -100,7 +100,7 @@ class PlatformAdapter:
                 timeout=5
             )
             return result.returncode == 0
-        except:
+        except (subprocess.TimeoutExpired, subprocess.SubprocessError, FileNotFoundError, OSError):
             return False
 
 
@@ -154,7 +154,7 @@ class Menu:
         """Get user input with colored prompt"""
         return input(f"{Colors.BOLD}{Colors.YELLOW}{prompt}: {Colors.ENDC}").strip()
     
-    def run_command(self, command: str, cwd: Optional[str] = None, shell: bool = True) -> int:
+    def run_command(self, command: str, cwd: Optional[str] = None) -> int:
         """Run a command and return exit code"""
         try:
             print(f"\n{Colors.CYAN}Executing: {Colors.ENDC}{command}\n")
@@ -483,7 +483,6 @@ class Menu:
             if os.path.exists(full_path):
                 print(f"{Colors.CYAN}Removing {path}...{Colors.ENDC}")
                 if os.path.isdir(full_path):
-                    import shutil
                     shutil.rmtree(full_path)
                 else:
                     os.remove(full_path)
