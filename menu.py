@@ -155,7 +155,16 @@ class Menu:
         return input(f"{Colors.BOLD}{Colors.YELLOW}{prompt}: {Colors.ENDC}").strip()
     
     def run_command(self, command: str, cwd: Optional[str] = None) -> int:
-        """Run a command and return exit code"""
+        """
+        Run a command and return exit code.
+        
+        Args:
+            command: The command string to execute
+            cwd: Optional working directory for the command (defaults to project root)
+            
+        Returns:
+            Exit code of the command (0 for success)
+        """
         try:
             print(f"\n{Colors.CYAN}Executing: {Colors.ENDC}{command}\n")
             
@@ -169,12 +178,13 @@ class Menu:
                     cwd=process_cwd
                 )
             else:
-                # On Unix-like systems, use bash
+                # On Unix-like systems, use bash if available
+                bash_path = shutil.which('bash')
                 result = subprocess.run(
                     command,
                     shell=True,
                     cwd=process_cwd,
-                    executable='/bin/bash' if not self.adapter.is_termux else None
+                    executable=bash_path if bash_path and not self.adapter.is_termux else None
                 )
             
             return result.returncode
@@ -511,7 +521,7 @@ class Menu:
         try:
             node_result = subprocess.run(['node', '--version'], capture_output=True, text=True, timeout=5)
             print(f"  Node.js: {node_result.stdout.strip()}")
-        except:
+        except (subprocess.TimeoutExpired, subprocess.SubprocessError, FileNotFoundError, OSError):
             print(f"  Node.js: Not available")
         
         # Check npm version
@@ -519,14 +529,14 @@ class Menu:
         try:
             npm_result = subprocess.run([npm_cmd, '--version'], capture_output=True, text=True, timeout=5)
             print(f"  npm: {npm_result.stdout.strip()}")
-        except:
+        except (subprocess.TimeoutExpired, subprocess.SubprocessError, FileNotFoundError, OSError):
             print(f"  npm: Not available")
         
         # Check Docker version
         try:
             docker_result = subprocess.run(['docker', '--version'], capture_output=True, text=True, timeout=5)
             print(f"  Docker: {docker_result.stdout.strip()}")
-        except:
+        except (subprocess.TimeoutExpired, subprocess.SubprocessError, FileNotFoundError, OSError):
             print(f"  Docker: Not available")
         
         print(f"\n{Colors.BOLD}Paths:{Colors.ENDC}")

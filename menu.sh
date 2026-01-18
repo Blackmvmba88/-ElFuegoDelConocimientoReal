@@ -29,10 +29,10 @@ fi
 
 # Check Python version
 PYTHON_VERSION=$($PYTHON_CMD --version 2>&1 | awk '{print $2}')
-MAJOR_VERSION=$(echo $PYTHON_VERSION | cut -d. -f1)
-MINOR_VERSION=$(echo $PYTHON_VERSION | cut -d. -f2)
+MAJOR_VERSION=$(echo "$PYTHON_VERSION" | cut -d. -f1)
+MINOR_VERSION=$(echo "$PYTHON_VERSION" | cut -d. -f2)
 
-if [ "$MAJOR_VERSION" -lt 3 ] || ([ "$MAJOR_VERSION" -eq 3 ] && [ "$MINOR_VERSION" -lt 7 ]); then
+if (( MAJOR_VERSION < 3 )) || (( MAJOR_VERSION == 3 && MINOR_VERSION < 7 )); then
     echo -e "${RED}Error: Python 3.7 or higher is required${NC}"
     echo -e "${YELLOW}Current version: $PYTHON_VERSION${NC}"
     exit 1
