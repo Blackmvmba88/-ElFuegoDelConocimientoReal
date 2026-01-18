@@ -43,6 +43,31 @@ El usuario recorre niveles de iniciación digital desbloqueando lecciones, fragm
 
 ## 🚀 Quick Start
 
+### 🎯 Opción 1: Usar el Menu Interactivo (Recomendado)
+
+El proyecto incluye un menú interactivo en terminal compatible con todos los sistemas operativos:
+
+```bash
+# Linux / macOS / Termux
+./menu.sh
+
+# Windows
+menu.bat
+
+# O directamente con Python
+python3 menu.py
+```
+
+**Características del menú:**
+- ✅ Compatible con Termux, Windows, Linux, macOS
+- 🎨 Interfaz TUI (Text User Interface) con colores
+- 🚀 Opciones para iniciar Frontend, Backend o ambos
+- 🧪 Ejecutar tests automáticamente
+- 💚 Verificar salud del sistema y dependencias
+- 🛠️ Herramientas de desarrollo integradas
+
+### 🎯 Opción 2: Comandos Manuales
+
 ```bash
 # Instalar dependencias
 npm install
